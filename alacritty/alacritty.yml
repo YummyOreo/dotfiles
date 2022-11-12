@@ -105,7 +105,7 @@ font:
 cursor:
   blinking: true
 
-working_directory: D:\Desktop 2
+# working_directory: D:\Desktop 2
 
 mouse_bindings:
   - { mouse: Middle, action: Copy }
