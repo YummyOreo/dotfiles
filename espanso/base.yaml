@@ -1,0 +1,111 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+global_vars:
+  - name: "name"
+    type: "echo"
+    params:
+      echo: "Your Name Here"
+  - name: "emailusername"
+    type: "echo"
+    params:
+      echo: "Your Emal Username Here"
+
+  - name: "currentproject"
+    type: "echo"
+    params:
+      echo: "document site"
+
+matches:
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print the current date
+  - triggers: [":date", ":today"]
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y/%m/%d"
+
+  - trigger: ":now"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%H:%M"
+
+  - triggers: [":tomorrow", ":tmr"]
+    replace: "{{mytime}}"
+    vars:
+      - name: mytime
+        type: date
+        params:
+          format: "%x"
+          offset: 86400
+
+  - trigger: ":vocab"
+    replace: "#vocab\n# Definition\n$|$\n# Examples:\n\n# In Book\n"
+
+  - trigger: ":alg"
+    replace: "#vocab #algorithm\n# Definition\n$|$\n# Examples:\n\n# Code Examples:\n"
+
+  - trigger: ":br"
+    replace: "Best Regards,\n{{name}}"
+
+  - triggers: [":pro", ":project"]
+    replace: "cd {{currentproject}}\n"
+
+  - trigger: ":dev"
+    replace: "npm run dev\n"
+
+  - trigger: ":ac"
+    replace: "git ac \"$|$\""
+
+  - trigger: ":push"
+    replace: "git push origin $|$"
+
+  - trigger: ":note"
+    replace: "git ac \"note updates: {{mydate}}\"\ngit push origin main\n"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y/%m/%d @ %H:%M"
+
+  - triggers: [":power"]
+    replace: "alacritty\n"
+
+  - trigger: "dont"
+    replace: "don't"
+    propagate_case: true
+    word: true
+
+  - triggers: ["arent", "arnt"]
+    replace: "aren't"
+    propagate_case: true
+    word: true
+
+  - trigger: "cant"
+    replace: "can't"
+    propagate_case: true
+    word: true
+
+  - trigger: ":@"
+    replace: "bobgim20@gmail.com"
+
+  # personal email
+  - trigger: ":p@"
+    replace: "{{emailusername}}@gmail.com"
+
+  - trigger: ":inf"
+    replace: "∞"
