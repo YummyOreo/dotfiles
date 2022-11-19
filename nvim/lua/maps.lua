@@ -12,15 +12,16 @@ function map(shortcut, command)
   vim.api.nvim_set_keymap("", shortcut, command, { noremap = true })
 end
 
-nnoremap("<c-\\>", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>")
+map("<c-\\>", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>")
 
-nnoremap("[e", ":<c-u>execute \'move -1-\'. v:count1<cr>")
-nnoremap("]e", ":<c-u>execute \'move +\'. v:count1<cr>")
+-- nnoremap("[e", ":<c-u>execute \'move -1-\'. v:count1<cr>")
+-- nnoremap("]e", ":<c-u>execute \'move +\'. v:count1<cr>")
 
-nnoremap("[<space>", ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[")
-nnoremap("]<space>", ":<c-u>put =repeat(nr2char(10), v:count1)<cr>")
+-- nnoremap("[<space>", ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[")
+-- nnoremap("]<space>", ":<c-u>put =repeat(nr2char(10), v:count1)<cr>")
 
 nnoremap("<C-p>", ":Telescope find_files<CR>")
+nnoremap("<Leader><C-p>", ":Telescope live_grep<CR>")
 
 nnoremap("<TAB>", ":bnext<CR>")
 nnoremap("<S-TAB>", ":bprevious<CR>")
@@ -28,10 +29,10 @@ nnoremap("<S-TAB>", ":bprevious<CR>")
 vnoremap("<", "<gv")
 vnoremap(">", ">gv")
 
-nnoremap("<C-J>", "<C-W><C-J>")
-nnoremap("<C-K>", "<C-W><C-K>")
-nnoremap("<C-L>", "<C-W><C-L>")
-nnoremap("<C-H>", "<C-W><C-H>")
+map("<C-J>", "<C-W><C-J>")
+map("<C-K>", "<C-W><C-K>")
+map("<C-L>", "<C-W><C-L>")
+map("<C-H>", "<C-W><C-H>")
 
 map("<leader>y", "<plug>YankCode")
 
@@ -64,3 +65,5 @@ vim.keymap.set('n', '<C-w><down>', '<C-w>-')
 nnoremap("<Leader>\'", ":lua require(\"harpoon.ui\").toggle_quick_menu()<CR>")
 nnoremap("<Leader>,", ":<C-u>lua require(\"harpoon.ui\").nav_file(vim.v.count)<CR>")
 nnoremap("<Leader>.", ":lua require(\"harpoon.mark\").add_file()<CR>")
+
+nnoremap("<Leader>t", ":TransparentToggle<CR>")

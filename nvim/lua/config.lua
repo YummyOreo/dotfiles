@@ -1,8 +1,3 @@
-vim.api.nvim_command([[
-    augroup ChangeBackgroudColour
-        autocmd colorscheme * :hi normal guibg=#0a0a0a
-    augroup END
-]])
 vim.opt.termguicolors = true
 
 require'colorizer'.setup()
@@ -56,4 +51,18 @@ highlight! link CmpItemKindProperty CmpItemKindKeyword
 highlight! link CmpItemKindUnit CmpItemKindKeyword
 
 let g:better_whitespace_filetypes_blacklist = ['dashboard']
+
+function! Trim()
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//e
+  call winrestview(l:save)
+endfun
+
+command! -nargs=0 Trim call Trim()
+
+function! ToggleTrasparent()
+    exe ':TransparentToggle'
+endfun
+
+command! -nargs=0 ToggleTrasparent call ToggleTrasparent()
 ]])

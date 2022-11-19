@@ -1,4 +1,5 @@
 require("mason").setup()
+require("mason-lspconfig").setup()
 
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -36,6 +37,10 @@ require('lspconfig')['pyright'].setup{
     flags = lsp_flags,
 }
 require('lspconfig')['tsserver'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+require('lspconfig')['marksman'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }

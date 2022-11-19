@@ -28,6 +28,7 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
 Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 
 Plug 'onsails/lspkind.nvim'
 
@@ -47,6 +48,9 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 
 Plug 'rafamadriz/friendly-snippets'
 Plug 'windwp/nvim-ts-autotag'
+Plug 'xiyaowong/nvim-transparent'
+
+Plug 'tpope/vim-unimpaired'
 :call plug#end()
 ]])
 
@@ -62,3 +66,4 @@ require("plugin.treesitter_config")
 require("plugin.telescope_config")
 require("plugin.zen_mode_config")
 require("plugin.lualine_config")
+require("plugin.transparent_config")

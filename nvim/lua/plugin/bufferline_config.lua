@@ -1,24 +1,24 @@
 require("bufferline").setup({
   options = {
     mode = "buffers",
-    separator_style = "slant",
+    -- separator_style = "slant",
     always_show_bufferline = true,
     show_buffer_close_icons = false,
     show_close_icon = false,
     color_icons = true,
   },
     highlights = {
-    separator = {
-      fg = '#282828',
-      bg = '#3c3836',
-    },
     separator_selected = {
         bg = '#1d2021',
-      fg = '#282828'
+        fg = '#1d2021',
     },
     separator_visible = {
         bg = '#1d2021',
-        fg = '#282828'
+        fg = '#1d2021',
+    },
+    separator = {
+      fg = '#282828',
+      bg = '#3c3836',
     },
     background = {
       bg = '#3c3836'
