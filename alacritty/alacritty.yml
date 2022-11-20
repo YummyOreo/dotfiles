@@ -95,17 +95,22 @@ window:
 
   startup_mode: Maximized
   #decorations: none
+  opacity: 0.97
 
 font:
   normal:
-    family: Monoid NFM
+    family: TerminessTTF NF
 
-  size: 10
+  size: 12
 
 cursor:
   blinking: true
 
-# working_directory: D:\Desktop 2
-
 mouse_bindings:
   - { mouse: Middle, action: Copy }
+
+key_bindings:
+  - {key: Tab, mods: Control, Action: SpawnNewInstance}
+  - { key: W, mods: Alt, action: Quit }
+  - { key: Backslash, mods: Control, chars: "\x0c"  }
+  - { key: Slash, mods: Control, chars: "\x0c"  }
