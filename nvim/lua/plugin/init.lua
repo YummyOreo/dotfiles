@@ -51,6 +51,7 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'xiyaowong/nvim-transparent'
 
 Plug 'tpope/vim-unimpaired'
+Plug 'ray-x/lsp_signature.nvim'
 :call plug#end()
 ]])
 
@@ -61,6 +62,7 @@ silent! colorscheme gruvbox8
 require("plugin.bufferline_config")
 require("plugin.cmp_config")
 require("plugin.lsp_setup")
+require("plugin.lsp_sig_config")
 require("plugin.dashboard_config")
 require("plugin.treesitter_config")
 require("plugin.telescope_config")
