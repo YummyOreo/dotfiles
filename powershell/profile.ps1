@@ -1,4 +1,4 @@
-oh-my-posh.exe init pwsh --config "C:\Users\YOUR NAME\OneDrive\Desktop\OMP Themes\craver.omp.json" | Invoke-Expression
+oh-my-posh.exe init pwsh --config "Your Path\takuya.omp.json" | Invoke-Expression
 Import-Module PSReadLine
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
@@ -11,6 +11,7 @@ if ($host.Name -eq 'ConsoleHost')
 
 $SHELL_HISTORY=(Get-PSReadlineOption).HistorySavePath
 Set-Alias -Name vim -Value nvim
+Set-Alias -Name touch -Value New-Item
 
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
@@ -124,5 +125,12 @@ function __zoxide_zi {
 
 Set-Alias -Name cd -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name cdi -Value __zoxide_zi -Option AllScope -Scope Global -Force
+
+if ('' + (Get-Location) + '' -eq 'C:\Windows\System32') {
+	cd 'Desktop 2'
+}
+if ('' + (Get-Location) + '' -eq 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Alacritty') {
+	cd 'Desktop 2'
+}
 
 clear
