@@ -30,7 +30,8 @@ vim.opt.cursorline = true
 -- tab --
 vim.opt.expandtab = true
 vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 8
+-- vim.opt.shiftwidth = 4
 
 vim.cmd([[
 " gray
@@ -65,4 +66,10 @@ function! ToggleTrasparent()
 endfun
 
 command! -nargs=0 ToggleTrasparent call ToggleTrasparent()
+
+function! Ocacity(value)
+     execute "silent !powershell ocacity ". a:value
+endfun
+
+command! -nargs=1 Ocacity call Ocacity(<f-args>)
 ]])

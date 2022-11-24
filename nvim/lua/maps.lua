@@ -12,7 +12,8 @@ function map(shortcut, command)
   vim.api.nvim_set_keymap("", shortcut, command, { noremap = true })
 end
 
-map("<c-\\>", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>")
+nnoremap("<Leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>")
+vnoremap("<Leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>")
 
 -- nnoremap("[e", ":<c-u>execute \'move -1-\'. v:count1<cr>")
 -- nnoremap("]e", ":<c-u>execute \'move +\'. v:count1<cr>")
@@ -36,7 +37,7 @@ map("<C-H>", "<C-W><C-H>")
 
 map("<leader>y", "<plug>YankCode")
 
-nnoremap("<Leader>bd", ":bd<CR>")
+nnoremap("<Leader>bd", ":Bdelete<CR>")
 
 vim.cmd([[
 function! CleanBuffers()

@@ -10,6 +10,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'raimondi/delimitmate'
+let delimitMate_expand_cr = 1
+
 Plug 'alvan/vim-closetag'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'wakatime/vim-wakatime'
@@ -52,6 +54,9 @@ Plug 'xiyaowong/nvim-transparent'
 
 Plug 'tpope/vim-unimpaired'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'moll/vim-bbye'
+Plug 'rhysd/clever-f.vim'
+Plug 'dhruvasagar/vim-zoom'
 :call plug#end()
 ]])
 
@@ -61,8 +66,8 @@ silent! colorscheme gruvbox8
 ]]
 require("plugin.bufferline_config")
 require("plugin.cmp_config")
-require("plugin.lsp_setup")
 require("plugin.lsp_sig_config")
+require("plugin.lsp_setup")
 require("plugin.dashboard_config")
 require("plugin.treesitter_config")
 require("plugin.telescope_config")
