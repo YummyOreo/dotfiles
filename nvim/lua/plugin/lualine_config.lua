@@ -1,5 +1,5 @@
 require('lualine').setup({
-    options = { theme = 'gruvbox' }
+   options = { theme = 'gruvbox' }
 })
 require('lualine').hide({
     place = {'tabline'}, -- The segment this change applies to.
