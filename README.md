@@ -8,4 +8,9 @@
 > This is not sorted at all! So it will look ugly.
 My config for neovim
 
-Uses [vim-plug](https://github.com/junegunn/vim-plug).
+Uses [packer.nvim](https://github.com/wbthomason/packer.nvim).
+Run:
+```cmd
+:PackerInstall
+:PackerCompile
+```
