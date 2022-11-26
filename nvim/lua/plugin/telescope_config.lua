@@ -18,9 +18,3 @@ require("telescope").setup {
 -- you need to call load_extension, somewhere after setup function:
 require("telescope").load_extension "file_browser"
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<C-t>",
-  ":Telescope file_browser<CR>",
-  { noremap = true, silent = true }
-)

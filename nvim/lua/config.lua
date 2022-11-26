@@ -29,9 +29,10 @@ vim.opt.cursorline = true
 
 -- tab --
 vim.opt.expandtab = true
-vim.opt.softtabstop = 4
+vim.opt.softtabstop = 0
 vim.opt.tabstop = 8
--- vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 4
+vim.opt.smarttab = true
 
 vim.cmd([[
 " gray

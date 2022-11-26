@@ -26,24 +26,31 @@ return require('packer').startup(function(use)
         }
 
         use {'akinsho/bufferline.nvim', tag = "v3.*", config = function() require("plugin.bufferline_config") end, event={"BufCreate", "BufEnter"}, opt=true}
-	use {"norcalli/nvim-colorizer.lua"}
+
+	use {"norcalli/nvim-colorizer.lua", event="BufReadPre"}
 
         use {"hrsh7th/vim-vsnip", requires = {
                 "hrsh7th/cmp-vsnip", event="InsertEnter"
         }}
 
-        use "rafamadriz/friendly-snippets"
+        use {"rafamadriz/friendly-snippets", event="InsertEnter"}
+
+        use {"onsails/lspkind.nvim", opt=true}
 
         use {"hrsh7th/nvim-cmp",
                 requires = {
-                        {"hrsh7th/cmp-cmdline"},
-                        {"hrsh7th/cmp-path"},
-                        {"hrsh7th/cmp-buffer"},
-                        {"hrsh7th/cmp-nvim-lsp"},
-                        {"onsails/lspkind.nvim"}
+                        {"hrsh7th/cmp-cmdline", opt=true},
+                        {"hrsh7th/cmp-path", opt=true},
+                        {"hrsh7th/cmp-buffer", opt=true},
+                        {"hrsh7th/cmp-nvim-lsp", opt=true},
                 },
                 event="InsertEnter",
-                config = function() require("plugin.cmp_config") end
+                config = function()
+                        vim.cmd [[
+                        PackerLoad lspkind.nvim cmp-cmdline cmp-path cmp-buffer cmp-nvim-lsp
+                        ]]
+                        require("plugin.cmp_config")
+                end
         }
 
         use {
@@ -80,7 +87,6 @@ return require('packer').startup(function(use)
           'nvim-lualine/lualine.nvim',
           config = function() require("plugin.lualine_config") end,
           event={"BufCreate", "BufEnter"},
-          requires = { 'kyazdani42/nvim-web-devicons', opt = true }
         }
 
         use {'xiyaowong/nvim-transparent', config = function() require("plugin.transparent_config") end}
@@ -104,7 +110,7 @@ return require('packer').startup(function(use)
         use {
                 "Raimondi/delimitMate",
                 config = function() vim.cmd[[let delimitMate_expand_cr = 1]] end,
-                event="BufReadPre", opt=true,
+                event="InsertEnter", opt=true,
         }
         use {
                 "alvan/vim-closetag",
@@ -120,8 +126,7 @@ return require('packer').startup(function(use)
                 "ThePrimeagen/harpoon",
         }
 
-        use {"AaronLasseigne/yank-code", keys = "<Leader>y"}
         use {"tpope/vim-unimpaired"}
-        use {"moll/vim-bbye", cmd=":Bdelete"}
+        use {"moll/vim-bbye", event="BufCreate"}
         use {"dhruvasagar/vim-zoom", keys = "<C-w>m"}
 end)

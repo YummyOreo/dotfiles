@@ -23,6 +23,7 @@ vnoremap("<Leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><
 
 nnoremap("<C-p>", ":Telescope find_files<CR>")
 nnoremap("<Leader><C-p>", ":Telescope live_grep<CR>")
+nnoremap("<C-t>", ":Telescope file_browser<CR>")
 
 nnoremap("<TAB>", ":bnext<CR>")
 nnoremap("<S-TAB>", ":bprevious<CR>")
@@ -35,9 +36,8 @@ map("<C-K>", "<C-W><C-K>")
 map("<C-L>", "<C-W><C-L>")
 map("<C-H>", "<C-W><C-H>")
 
-map("<leader>y", "<plug>YankCode")
-
-nnoremap("<Leader>bd", ":Bdelete<CR>")
+-- nnoremap("<Leader>bd", ":Bdelete<CR>")
+map("<Leader>bd", ":Bdelete<CR>")
 
 vim.cmd([[
 function! CleanBuffers()
@@ -68,3 +68,5 @@ nnoremap("<Leader>,", ":<C-u>lua require(\"harpoon.ui\").nav_file(vim.v.count)<C
 nnoremap("<Leader>.", ":lua require(\"harpoon.mark\").add_file()<CR>")
 
 nnoremap("<Leader>t", ":TransparentToggle<CR>")
+
+nnoremap("<Leader>ZZ", ":mksession! session.vim<CR>:wqa<CR>")
