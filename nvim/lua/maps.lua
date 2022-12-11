@@ -12,6 +12,11 @@ function map(shortcut, command)
   vim.api.nvim_set_keymap("", shortcut, command, { noremap = true })
 end
 
+nnoremap('<C-d>', '<C-d>zz')
+nnoremap('<C-u>', '<C-u>zz')
+nnoremap('n', 'nzzzv')
+nnoremap('N', 'Nzzzv')
+
 nnoremap("<Leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>")
 vnoremap("<Leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>")
 
@@ -21,9 +26,9 @@ vnoremap("<Leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><
 -- nnoremap("[<space>", ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[")
 -- nnoremap("]<space>", ":<c-u>put =repeat(nr2char(10), v:count1)<cr>")
 
-nnoremap("<C-p>", ":Telescope find_files<CR>")
+nnoremap("<C-p>", ":Telescope find_files hidden=true<CR>")
 nnoremap("<Leader><C-p>", ":Telescope live_grep<CR>")
-nnoremap("<C-t>", ":Telescope file_browser<CR>")
+nnoremap("<C-t>", ":Telescope file_browser hidden=true<CR>")
 
 nnoremap("<TAB>", ":bnext<CR>")
 nnoremap("<S-TAB>", ":bprevious<CR>")
@@ -70,3 +75,17 @@ nnoremap("<Leader>.", ":lua require(\"harpoon.mark\").add_file()<CR>")
 nnoremap("<Leader>t", ":TransparentToggle<CR>")
 
 nnoremap("<Leader>ZZ", ":mksession! session.vim<CR>:wqa<CR>")
+
+vim.keymap.set('', '<Leader><Leader>w', ':HopWordAC<CR>', { noremap = true, silent = true })
+vim.keymap.set('', '<Leader><Leader>W', ':HopWordCurrentLine<CR>', { noremap = true, silent = true })
+vim.keymap.set('', '<Leader><Leader>b', ':HopWordBC<CR>', { noremap = true, silent = true })
+vim.keymap.set('', '<Leader><Leader>a', ':HopWord<CR>', { noremap = true, silent = true })
+vim.keymap.set('', '<Leader><Leader>A', ':HopWordMW<CR>', { noremap = true, silent = true })
+vim.keymap.set('', '<Leader><Leader>k', ':HopLineStart<CR>', { noremap = true, silent = true })
+vim.keymap.set('', '<Leader><Leader>j', ':HopVertical<CR>', { noremap = true, silent = true })
+vim.keymap.set('',  '<Leader><Leader>/', ':HopPattern<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('',  '<Leader><Leader>f', ':HopChar1<CR>', { noremap = true, silent = true })
+vim.keymap.set('',  '<Leader><Leader>F', ':HopChar2<CR>', { noremap = true, silent = true })
+
+nnoremap("<Leader>gg", ":Glow<CR>")

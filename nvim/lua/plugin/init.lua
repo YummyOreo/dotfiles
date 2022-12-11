@@ -12,22 +12,50 @@ return require('packer').startup(function(use)
 
         use {
                 "rust-lang/rust.vim",
-                ft = {"rs", "rust"},
-                cmd={"RustFmt", "RustRun", "RustInfo", "RustPlay", "RustTest", "RustEmitIr", "RustExpand", "RustEmitAsm", "RustInfoToFile", "RustInfoToClipboard"}
+                -- ft = {"rs", "rust"},
+                -- cmd={"RustFmt", "RustRun", "RustInfo", "RustPlay", "RustTest", "RustEmitIr", "RustExpand", "RustEmitAsm", "RustInfoToFile", "RustInfoToClipboard"},
+                config = function()
+                  vim.api.nvim_set_keymap("n", "<Leader>f", ":RustFmt", { noremap = true, silent = true })
+                end,
         }
 
-        use {"easymotion/vim-easymotion", event="BufReadPre", opt=true,}
+        -- use {"easymotion/vim-easymotion", event="BufReadPre", opt=true,}
+        use {
+          'phaazon/hop.nvim',
+          branch = 'v2', -- optional but strongly recommended
+          keys =  {'f', 'F', "t", "T"},
+          cmd = {"HopWord", "HopLine", "HopPattern", "HopWordAC", "HopWordCurrentLine", "HopWordBC", "HopWordMW", "HopLineStart", "HopVertical", "HopChar1", "HopChar2"};
+          config = function()
+            require'hop'.setup { keys = 'aoeuidhtnspyfgcrlqjkxbmwvz' }
+            local hop = require('hop')
+            local directions = require('hop.hint').HintDirection
+            vim.keymap.set('', 'f', function()
+              hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+            end, {remap=true})
+            vim.keymap.set('', 'F', function()
+              hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+            end, {remap=true})
+            vim.keymap.set('', 't', function()
+              hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+            end, {remap=true})
+            vim.keymap.set('', 'T', function()
+              hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+            end, {remap=true})
+
+          end
+        }
 
         use {"lifepillar/vim-gruvbox8",
-        config = function() vim.cmd[[
-                set background=dark
-                colorscheme gruvbox8
+        config = function()
+            vim.cmd[[
+            set background=dark
+            colorscheme gruvbox8
         ]] end
         }
 
         use {'akinsho/bufferline.nvim', tag = "v3.*", config = function() require("plugin.bufferline_config") end, event={"BufCreate", "BufEnter"}, opt=true}
 
-	use {"norcalli/nvim-colorizer.lua", event="BufReadPre"}
+	use {"norcalli/nvim-colorizer.lua", event="BufReadPre", config=function() require'colorizer'.setup() end}
 
         use {"hrsh7th/vim-vsnip", requires = {
                 "hrsh7th/cmp-vsnip", event="InsertEnter"
@@ -95,17 +123,24 @@ return require('packer').startup(function(use)
                 "ntpeters/vim-better-whitespace",
                 event="BufReadPre", opt=true,
         }
-        use {
-                "tpope/vim-surround",
-                event="BufReadPre", opt=true,
-        }
+
+        use({
+            "kylechui/nvim-surround",
+            event = "BufReadPre",
+            opt = true,
+            config = function()
+                require("nvim-surround").setup({
+                })
+            end
+        })
+
         use {
                 "tpope/vim-fugitive",
                 cmd = {'Git'}
         }
         use {
                 "tpope/vim-repeat",
-                keys = {"."}
+                keys = {"."},
         }
         use {
                 "Raimondi/delimitMate",
@@ -117,7 +152,7 @@ return require('packer').startup(function(use)
                 ft = {"html", "xml", "xhtml", "phtml"}
         }
         use {"mg979/vim-visual-multi", keys = "<C-n>", opt=true,}
-        use 'wakatime/vim-wakatime'
+        -- use 'wakatime/vim-wakatime'
         use {
                 "tpope/vim-commentary",
                 keys = {"gc", "gcc"}
@@ -129,4 +164,16 @@ return require('packer').startup(function(use)
         use {"tpope/vim-unimpaired"}
         use {"moll/vim-bbye", event="BufCreate"}
         use {"dhruvasagar/vim-zoom", keys = "<C-w>m"}
+        use {
+            "ellisonleao/glow.nvim",
+            cmd = {'Glow', 'Glow!'},
+            config = function()
+                require('glow').setup({
+                    style = "C:\\Users\\OreoD\\OneDrive\\Desktop\\Glow\\gruvbox.json",
+                    border = "rounded",
+                    width = 140,
+                    height = 160,
+                })
+            end
+        }
 end)

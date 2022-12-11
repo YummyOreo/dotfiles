@@ -1,6 +1,6 @@
 vim.opt.termguicolors = true
 
-require'colorizer'.setup()
+-- require'colorizer'.setup()
 
 vim.opt.autoindent = true
 vim.opt.smartindent = true
