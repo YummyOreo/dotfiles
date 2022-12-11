@@ -12,6 +12,16 @@ if ($host.Name -eq 'ConsoleHost')
 $SHELL_HISTORY=(Get-PSReadlineOption).HistorySavePath
 Set-Alias -Name vim -Value nvim
 Set-Alias -Name touch -Value New-Item
+Set-Alias -Name spotify -Value spt
+function where_command($value) {
+	(Get-Command $value).path
+}
+
+# Set-Alias -Name opacity -Value "D:\\Python\\python.exe" 'C:\\Users\\OreoD\\AppData\\Roaming\\alacritty\\change_o.py'
+function ocacity($value) {
+	python 'C:\\Users\\OreoD\\AppData\\Roaming\\alacritty\\change_o.py' $value
+}
+# Set-Alias -Name cat -Value Get-Content
 
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
@@ -23,10 +33,27 @@ if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
 
-Invoke-Expression (& {
-    $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
-    (zoxide init --hook $hook powershell | Out-String)
-})
+# =============================================================================
+#
+# Utility functions for zoxide.
+#
+
+# pwd based on zoxide's format.
+function __zoxide_pwd {
+    $cwd = Get-Location
+    if ($cwd.Provider.Name -eq "FileSystem") {
+        $cwd.ProviderPath
+    }
+}
+
+# cd + custom logic based on the value of _ZO_ECHO.
+function __zoxide_cd($dir, $literal) {
+    $dir = if ($literal) {
+        Set-Location -LiteralPath $dir -Passthru -ErrorAction Stop
+    } else {
+        Set-Location -Path $dir -Passthru -ErrorAction Stop
+    }
+}
 
 # =============================================================================
 #
@@ -68,15 +95,10 @@ function __zoxide_hook {
 $__zoxide_hooked = (Get-Variable __zoxide_hooked -ValueOnly -ErrorAction SilentlyContinue)
 if ($__zoxide_hooked -ne 1) {
     $__zoxide_hooked = 1
-    if ($PSVersionTable.PSVersion.Major -ge 6) {
-        $ExecutionContext.InvokeCommand.LocationChangedAction = {
-            $null = __zoxide_hook
-        }
-    }
-    else {
-        Write-Error ("`n" +
-            "zoxide: PWD hooks are not supported below powershell 6.`n" +
-            "        Use 'zoxide init powershell --hook prompt' instead.")
+    $prompt_old = $function:prompt
+    function prompt {
+        $null = __zoxide_hook
+        & $prompt_old
     }
 }
 
@@ -126,10 +148,20 @@ function __zoxide_zi {
 Set-Alias -Name cd -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name cdi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 
+# =============================================================================
+#
+# To initialize zoxide, add this to your configuration (find it by running
+# `echo $profile` in PowerShell):
+#
+# Invoke-Expression (& { $hook = if ($PSVersionTable.PSVersion.Major -ge 6) { 'pwd' } else { 'prompt' } (zoxide init powershell --hook $hook | Out-String) })
+
 if ('' + (Get-Location) + '' -eq 'C:\Windows\System32') {
 	cd 'Desktop 2'
 }
 if ('' + (Get-Location) + '' -eq 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Alacritty') {
+	cd 'Desktop 2'
+}
+if ('' + (Get-Location) + '' -eq 'C:\Program Files\Rainmeter') {
 	cd 'Desktop 2'
 }
 
