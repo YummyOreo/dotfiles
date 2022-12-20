@@ -34,6 +34,9 @@ vim.opt.tabstop = 8
 vim.opt.shiftwidth = 4
 vim.opt.smarttab = true
 
+-- clipboard --
+vim.opt.clipboard = "unnamed"
+
 vim.cmd([[
 " gray
 highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
@@ -51,6 +54,9 @@ highlight! link CmpItemKindMethod CmpItemKindFunction
 highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
 highlight! link CmpItemKindProperty CmpItemKindKeyword
 highlight! link CmpItemKindUnit CmpItemKindKeyword
+
+hi Search cterm=reverse
+hi IncSearch cterm=reverse
 
 let g:better_whitespace_filetypes_blacklist = ['dashboard']
 
@@ -73,4 +79,6 @@ function! Ocacity(value)
 endfun
 
 command! -nargs=1 Ocacity call Ocacity(<f-args>)
+
 ]])
+-- set shell=powershell
