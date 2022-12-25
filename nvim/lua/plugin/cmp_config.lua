@@ -82,6 +82,7 @@ local kind_icons = {
       { name = 'nvim_lsp' },
       { name = 'vsnip' }, -- For vsnip users.
       { name = 'buffer' },
+        { name = "crates" },
     }),
     experimental = {
         ghost_text = true,

@@ -13,34 +13,35 @@ return require('packer').startup(function(use)
     }
 
     -- looks
-    use {"C:\\Users\\OreoD\\AppData\\Local\\nvim\\lua\\plugin\\vim-gruvbox8",
+    use { "C:\\Users\\OreoD\\AppData\\Local\\nvim\\lua\\plugin\\vim-gruvbox8",
         config = function()
-            vim.cmd[[
+            vim.cmd [[
             set background=dark
             colorscheme gruvbox8
-            ]] end
+            ]]
+        end
     }
 
     use {
         "rebelot/kanagawa.nvim",
         opt = true,
         config = function()
-            vim.cmd[[
+            vim.cmd [[
                     set background=dark
                     colorscheme kanagawa
                     ]]
         end
     }
 
-    use {'xiyaowong/nvim-transparent', config = function() require("plugin.transparent_config") end}
+    use { 'xiyaowong/nvim-transparent', config = function() require("plugin.transparent_config") end }
 
-    use {"norcalli/nvim-colorizer.lua", event="BufReadPre", config=function() require'colorizer'.setup() end}
+    use { "norcalli/nvim-colorizer.lua", event = "BufReadPre", config = function() require 'colorizer'.setup() end }
 
     use {
         'nvim-tree/nvim-web-devicons',
-        module="nvim-web-devicons",
+        module = "nvim-web-devicons",
         config = function()
-            require'nvim-web-devicons'.setup {
+            require 'nvim-web-devicons'.setup {
                 color_icons = false;
             }
         end
@@ -49,36 +50,48 @@ return require('packer').startup(function(use)
     use {
         'akinsho/bufferline.nvim', tag = "v3.*",
         config = function() require("plugin.bufferline_config") end,
-        event={"BufCreate", "BufEnter"},
-        opt=true
+        event = { "BufCreate", "BufEnter" },
+        opt = true
     }
 
-    use {'glepnir/dashboard-nvim', config = function() require("plugin.dashboard_config") end}
+    use { 'glepnir/dashboard-nvim', config = function() require("plugin.dashboard_config") end }
 
-    use {"folke/zen-mode.nvim", requires={
-        {"folke/twilight.nvim", cmd="ZenMode"}
+    use { "folke/zen-mode.nvim", requires = {
+        { "folke/twilight.nvim", cmd = "ZenMode" }
     },
-        config = function() require("plugin.zen_mode_config") end, cmd="ZenMode",
+        config = function() require("plugin.zen_mode_config") end, cmd = "ZenMode",
     }
 
     use {
         'nvim-lualine/lualine.nvim',
         config = function() require("plugin.lualine_config") end,
-        event={"BufCreate", "BufEnter"},
+        event = { "BufCreate", "BufEnter" },
     }
 
 
 
     -- lang
-        -- rust
+    -- rust
     use {
         "rust-lang/rust.vim",
     }
 
-        -- MD
+    use {
+        'saecki/crates.nvim',
+        tag = 'v0.3.0',
+        event = { "BufRead Cargo.toml" },
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('crates').setup()
+            vim.api.nvim_set_keymap("n", "<leader>cu", "<cmd> lua require('crates').upgrade_all_crates()<cr>",
+                { noremap = true })
+        end,
+    }
+
+    -- MD
     use {
         "ellisonleao/glow.nvim",
-        cmd = {'Glow', 'Glow!'},
+        cmd = { 'Glow', 'Glow!' },
         config = function()
             require("plugin.glow_setup")
         end
@@ -97,8 +110,8 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         cmd = "Telescope",
-        keys = {"<C-p>", "<Leader>p"},
-        requires = {"nvim-telescope/telescope-file-browser.nvim"},
+        keys = { "<C-p>", "<Leader>p" },
+        requires = { "nvim-telescope/telescope-file-browser.nvim" },
         config = function() require("plugin.telescope_config") end,
     }
 
@@ -116,27 +129,27 @@ return require('packer').startup(function(use)
 
     use {
         "tpope/vim-fugitive",
-        cmd = {'Git'}
+        cmd = { 'Git' }
     }
     use {
         "tpope/vim-repeat",
-        keys = {"."},
+        keys = { "." },
     }
     use {
         "Raimondi/delimitMate",
-        config = function() vim.cmd[[let delimitMate_expand_cr = 1]] end,
-        event={"InsertEnter"}, opt=true,
+        config = function() vim.cmd [[let delimitMate_expand_cr = 1]] end,
+        event = { "InsertEnter" }, opt = true,
     }
     use {
         "alvan/vim-closetag",
-        ft = {"html", "xml", "xhtml", "phtml"}
+        ft = { "html", "xml", "xhtml", "phtml" }
     }
 
-    use {"mg979/vim-visual-multi", keys = "<C-n>", opt=true,}
+    use { "mg979/vim-visual-multi", keys = "<C-n>", opt = true, }
 
     use {
         "numToStr/Comment.nvim",
-        keys = {"gc", "gb"},
+        keys = { "gc", "gb" },
         config = function()
             require('Comment').setup()
         end
@@ -145,18 +158,19 @@ return require('packer').startup(function(use)
         "ThePrimeagen/harpoon",
     }
 
-    use {"tpope/vim-unimpaired"}
+    use { "tpope/vim-unimpaired" }
 
-    use {"moll/vim-bbye", event="BufCreate"}
+    use { "moll/vim-bbye", event = "BufCreate" }
 
-    use {"dhruvasagar/vim-zoom", keys = "<C-w>m"}
+    use { "dhruvasagar/vim-zoom", keys = "<C-w>m" }
 
     -- motion
     use {
         'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
-        keys =  {'f', 'F', "t", "T"},
-        cmd = {"HopWord", "HopLine", "HopPattern", "HopWordAC", "HopWordCurrentLine", "HopWordBC", "HopWordMW", "HopLineStart", "HopVertical", "HopChar1", "HopChar2"};
+        keys = { 'f', 'F', "t", "T" },
+        cmd = { "HopWord", "HopLine", "HopPattern", "HopWordAC", "HopWordCurrentLine", "HopWordBC", "HopWordMW",
+            "HopLineStart", "HopVertical", "HopChar1", "HopChar2" };
         config = function()
             require("plugin.hop_setup")
         end
@@ -164,23 +178,23 @@ return require('packer').startup(function(use)
 
     -- Lsp/Snips
 
-    use {"hrsh7th/vim-vsnip", requires = {
-        "hrsh7th/cmp-vsnip", event="InsertEnter"
-    }}
+    use { "hrsh7th/vim-vsnip", requires = {
+        "hrsh7th/cmp-vsnip", event = "InsertEnter"
+    } }
 
-    use {"rafamadriz/friendly-snippets", event="InsertEnter"}
+    use { "rafamadriz/friendly-snippets", event = "InsertEnter" }
 
-    use {"onsails/lspkind.nvim", opt=true}
+    use { "onsails/lspkind.nvim", opt = true }
 
-        -- CMP
-    use {"hrsh7th/nvim-cmp",
+    -- CMP
+    use { "hrsh7th/nvim-cmp",
         requires = {
-            {"hrsh7th/cmp-cmdline", opt=true},
-            {"hrsh7th/cmp-path", opt=true},
-            {"hrsh7th/cmp-buffer", opt=true},
-            {"hrsh7th/cmp-nvim-lsp", opt=true},
+            { "hrsh7th/cmp-cmdline", opt = true },
+            { "hrsh7th/cmp-path", opt = true },
+            { "hrsh7th/cmp-buffer", opt = true },
+            { "hrsh7th/cmp-nvim-lsp", opt = true },
         },
-        event={"InsertEnter", "CmdlineEnter"},
+        event = { "InsertEnter", "CmdlineEnter" },
         config = function()
             vim.cmd [[
                         PackerLoad lspkind.nvim cmp-cmdline cmp-path cmp-buffer cmp-nvim-lsp vim-vsnip friendly-snippets
@@ -189,17 +203,17 @@ return require('packer').startup(function(use)
         end
     }
 
-        -- LSP
+    -- LSP
     use {
         "ray-x/lsp_signature.nvim",
-        event="InsertEnter",
+        event = "InsertEnter",
         config = function() require("plugin.lsp_sig_config") end,
     }
 
-    use {'neovim/nvim-lspconfig', config=function() require("plugin.lsp_setup") end, requires = {
+    use { 'neovim/nvim-lspconfig', config = function() require("plugin.lsp_setup") end, requires = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim"
-    }}
+    } }
 
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', requires = {
@@ -218,5 +232,5 @@ return require('packer').startup(function(use)
 
     -- term
 
-    use {'voldikss/vim-floaterm', cmd="FloatermNew"}
+    use { 'voldikss/vim-floaterm', cmd = "FloatermNew" }
 end)

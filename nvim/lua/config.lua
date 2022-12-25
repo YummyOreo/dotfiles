@@ -20,7 +20,7 @@ vim.opt.smartcase = true
 vim.opt.laststatus = 2
 
 vim.opt.ttyfast = true
-vim.opt.lazyredraw = true
+-- vim.opt.lazyredraw = true
 
 vim.opt.hidden = true
 

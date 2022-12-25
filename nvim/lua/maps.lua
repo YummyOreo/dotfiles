@@ -1,16 +1,17 @@
 vim.g.mapleader = " "
 
-function nnoremap(shortcut, command)
-  vim.api.nvim_set_keymap("n", shortcut, command, { noremap = true, silent = true })
+local function nnoremap(shortcut, command)
+    vim.api.nvim_set_keymap("n", shortcut, command, { noremap = true, silent = true })
 end
 
-function vnoremap(shortcut, command)
-  vim.api.nvim_set_keymap("v", shortcut, command, { noremap = true, silent = true })
+local function vnoremap(shortcut, command)
+    vim.api.nvim_set_keymap("v", shortcut, command, { noremap = true, silent = true })
 end
 
-function map(shortcut, command)
-  vim.api.nvim_set_keymap("", shortcut, command, { noremap = true })
+local function map(shortcut, command)
+    vim.api.nvim_set_keymap("", shortcut, command, { noremap = true, silent = true })
 end
+
 nnoremap("<Leader>t", "<cmd>po<CR>")
 
 nnoremap('<C-d>', '<C-d>zz')
@@ -18,15 +19,18 @@ nnoremap('<C-u>', '<C-u>zz')
 nnoremap('n', 'nzzzv')
 nnoremap('N', 'Nzzzv')
 
-map("<Leader>l", "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><c-l>")
+map("<Leader>l",
+    "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><cmd>ColorizerReloadAllBuffers<cr><c-l>")
 
 map("gr", "<cmd>Telescope lsp_references<CR>")
 
 nnoremap("<Leader><C-p>", "<cmd>Telescope live_grep<CR>")
 nnoremap("<Leader>P", "<cmd>Telescope live_grep<CR>")
 nnoremap("<C-t>", "<cmd>Telescope file_browser hidden=true<CR>")
-nnoremap("<Leader>c", "<cmd>Telescope git_commits<CR>")
-nnoremap("<Leader>s", "<cmd>Telescope spell_suggest<CR>")
+-- nnoremap("<Leader>c", "<cmd>Telescope git_commits<CR>")
+
+nnoremap("<Leader>S", "<cmd>Telescope spell_suggest<CR>")
+
 nnoremap("gt", "<cmd>Telescope lsp_type_definitions<CR>")
 nnoremap("<Leader>d", "<cmd>Telescope diagnostics<CR>")
 nnoremap('gr', "<cmd>Telescope lsp_references<CR>")
@@ -56,15 +60,25 @@ function! CleanBuffers()
 endfunction
 
 nnoremap <silent> <Leader><Tab>  :call CleanBuffers()<CR>
+
+function! ToggleSpell()
+    if &spell =~# 0
+        set spell
+    else
+        set nospell
+    endif
+endfunction
+
+nnoremap <silent> <Leader>s :call ToggleSpell()<cr>
 ]])
 
 -- other plugins --
-vim.keymap.set('n', 'x', '"_x')
+map('x', '"_x')
 
-vim.keymap.set('n', '<C-w><left>', '<C-w><')
-vim.keymap.set('n', '<C-w><right>', '<C-w>>')
-vim.keymap.set('n', '<C-w><up>', '<C-w>+')
-vim.keymap.set('n', '<C-w><down>', '<C-w>-')
+nnoremap('<C-w><left>', '<C-w><')
+nnoremap('<C-w><right>', '<C-w>>')
+nnoremap('<C-w><up>', '<C-w>+')
+nnoremap('<C-w><down>', '<C-w>-')
 
 nnoremap("<Leader>\'", "<cmd>lua require(\"harpoon.ui\").toggle_quick_menu()<CR>")
 nnoremap("<Leader>,", ":<C-u>lua require(\"harpoon.ui\").nav_file(vim.v.count)<CR>")
@@ -72,17 +86,17 @@ nnoremap("<Leader>.", "<cmd>lua require(\"harpoon.mark\").add_file()<CR>")
 
 nnoremap("<Leader>ZZ", "<cmd>mksession! session.vim<CR><cmd>wqa<CR>")
 
-vim.keymap.set('', '<Leader><Leader>w', '<cmd>HopWordAC<CR>', { noremap = true, silent = true })
-vim.keymap.set('', '<Leader><Leader>W', '<cmd>HopWordCurrentLine<CR>', { noremap = true, silent = true })
-vim.keymap.set('', '<Leader><Leader>b', '<cmd>HopWordBC<CR>', { noremap = true, silent = true })
-vim.keymap.set('', '<Leader><Leader>a', '<cmd>HopWord<CR>', { noremap = true, silent = true })
-vim.keymap.set('', '<Leader><Leader>A', '<cmd>HopWordMW<CR>', { noremap = true, silent = true })
-vim.keymap.set('', '<Leader><Leader>k', '<cmd>HopLineStart<CR>', { noremap = true, silent = true })
-vim.keymap.set('', '<Leader><Leader>j', '<cmd>HopVertical<CR>', { noremap = true, silent = true })
-vim.keymap.set('', '<Leader>/', '<cmd>HopPattern<CR>', { noremap = true, silent = true })
+map('<Leader><Leader>w', '<cmd>HopWordAC<CR>', { noremap = true, silent = true })
+map('<Leader><Leader>W', '<cmd>HopWordCurrentLine<CR>', { noremap = true, silent = true })
+map('<Leader><Leader>b', '<cmd>HopWordBC<CR>', { noremap = true, silent = true })
+map('<Leader><Leader>a', '<cmd>HopWord<CR>', { noremap = true, silent = true })
+map('<Leader><Leader>A', '<cmd>HopWordMW<CR>', { noremap = true, silent = true })
+map('<Leader><Leader>k', '<cmd>HopLineStart<CR>', { noremap = true, silent = true })
+map('<Leader><Leader>j', '<cmd>HopVertical<CR>', { noremap = true, silent = true })
+map('<Leader>/', '<cmd>HopPattern<CR>', { noremap = true, silent = true })
 
-vim.keymap.set('',  '<Leader><Leader>f', '<cmd>HopChar1<CR>', { noremap = true, silent = true })
-vim.keymap.set('',  '<Leader><Leader>F', '<cmd>HopChar2<CR>', { noremap = true, silent = true })
+map('<Leader><Leader>f', '<cmd>HopChar1<CR>', { noremap = true, silent = true })
+map('<Leader><Leader>F', '<cmd>HopChar2<CR>', { noremap = true, silent = true })
 
 nnoremap("<Leader>gg", "<cmd>Glow<CR>")
 
