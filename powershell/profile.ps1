@@ -1,4 +1,4 @@
-oh-my-posh.exe init pwsh --config "Your Path\takuya.omp.json" | Invoke-Expression
+oh-my-posh.exe init pwsh --config "C:\Users\OreoD\OneDrive\Desktop\OMP Themes\star.omp.json" | Invoke-Expression
 Import-Module PSReadLine
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
@@ -15,6 +15,10 @@ Set-Alias -Name touch -Value New-Item
 Set-Alias -Name spotify -Value spt
 function where_command($value) {
 	(Get-Command $value).path
+}
+
+function gd {
+    git diff
 }
 
 # Set-Alias -Name opacity -Value "D:\\Python\\python.exe" 'C:\\Users\\OreoD\\AppData\\Roaming\\alacritty\\change_o.py'
