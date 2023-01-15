@@ -20,7 +20,8 @@ vim.opt.smartcase = true
 vim.opt.laststatus = 2
 
 vim.opt.ttyfast = true
--- vim.opt.lazyredraw = true
+vim.opt.smartcase = true
+vim.opt.ignorecase = true
 
 vim.opt.hidden = true
 
@@ -67,12 +68,6 @@ function! Trim()
 endfun
 
 command! -nargs=0 Trim call Trim()
-
-function! ToggleTrasparent()
-    exe ':TransparentToggle'
-endfun
-
-command! -nargs=0 ToggleTrasparent call ToggleTrasparent()
 
 function! Ocacity(value)
      execute "silent !powershell ocacity ". a:value
