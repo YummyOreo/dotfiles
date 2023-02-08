@@ -2,7 +2,8 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+-- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<space>e', "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
@@ -14,8 +15,10 @@ local on_attach = function(client, bufnr)
 
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, buffer = 0 })
-    vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { noremap = true, silent = true, buffer = 0 })
+    vim.keymap.set('n', 'gD', "<cmd>Lspsaga peek_definition<CR>", bufopts)
+    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, { noremap = true, silent = true, buffer = 0 })
+    vim.keymap.set('n', 'K', "<cmd>Lspsaga hover_doc<CR>", { noremap = true, silent = true, buffer = 0 })
+    vim.keymap.set('n', '<leader>K', "<cmd>Lspsaga peek_definition<CR>", { noremap = true, silent = true, buffer = 0 })
 
     vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
@@ -28,19 +31,19 @@ require("mason-lspconfig").setup_handlers {
             flags = lsp_flags,
         }
     end,
-    ["rust_analyzer"] = function()
-        require 'lspconfig'.rust_analyzer.setup {
-            on_attach = on_attach,
-            flags = lsp_flags,
-            settings = {
-                ["rust-analyzer"] = {
-                    checkOnSave = {
-                        command = "clippy"
-                    },
-                }
-            }
-        }
-    end,
+    -- ["rust_analyzer"] = function()
+    --     require 'lspconfig'.rust_analyzer.setup {
+    --         on_attach = on_attach,
+    --         flags = lsp_flags,
+    --         settings = {
+    --             ["rust-analyzer"] = {
+    --                 checkOnSave = {
+    --                     command = "clippy"
+    --                 },
+    --             }
+    --         }
+    --     }
+    -- end,
 
     ["pyright"] = function()
         require("lspconfig").pyright.before_init = function(params, config)
@@ -55,7 +58,6 @@ require("mason-lspconfig").setup_handlers {
 
         require 'lspconfig'.pyright.setup {
             on_attach = on_attach,
-            flags = lsp_flags,
         }
     end
 }
@@ -78,3 +80,17 @@ require("mason-lspconfig").setup_handlers {
 --       ["rust-analyzer"] = {}
 --     }
 -- }
+
+require 'lspconfig'.rust_analyzer.setup {
+    on_attach = on_attach,
+    cmd = {
+        "rustup", "run", "stable", "rust-analyzer",
+    },
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                command = "clippy"
+            },
+        }
+    }
+}

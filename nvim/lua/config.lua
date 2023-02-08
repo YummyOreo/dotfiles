@@ -17,13 +17,14 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.smartcase = true
 
-vim.opt.laststatus = 2
-
 vim.opt.ttyfast = true
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 
 vim.opt.hidden = true
+
+vim.opt.laststatus = 2
+-- vim.opt.showtabline = 2
 
 vim.opt.scrolloff = 3
 vim.opt.cursorline = true
@@ -39,25 +40,9 @@ vim.opt.smarttab = true
 vim.opt.clipboard = "unnamed"
 
 vim.cmd([[
-" gray
-highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-" blue
-highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch
-" light blue
-highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-highlight! link CmpItemKindInterface CmpItemKindVariable
-highlight! link CmpItemKindText CmpItemKindVariable
-" pink
-highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-highlight! link CmpItemKindMethod CmpItemKindFunction
-" front
-highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-highlight! link CmpItemKindProperty CmpItemKindKeyword
-highlight! link CmpItemKindUnit CmpItemKindKeyword
 
-hi Search cterm=reverse
-hi IncSearch cterm=reverse
+" hi Search cterm=reverse
+" hi IncSearch cterm=reverse
 
 let g:better_whitespace_filetypes_blacklist = ['dashboard']
 
@@ -75,5 +60,5 @@ endfun
 
 command! -nargs=1 Ocacity call Ocacity(<f-args>)
 
+
 ]])
--- set shell=powershell

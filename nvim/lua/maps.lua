@@ -13,18 +13,35 @@ local function map(shortcut, command)
 end
 
 nnoremap("<Leader>t", "<cmd>po<CR>")
+nnoremap("<Leader>o", "<cmd>SymbolsOutline<cr>")
 
 nnoremap('<C-d>', '<C-d>zz')
 nnoremap('<C-u>', '<C-u>zz')
 nnoremap('n', 'nzzzv')
 nnoremap('N', 'Nzzzv')
 
-map("<Leader>L",
-    "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><cmd>ColorizerReloadAllBuffers<cr><c-l>")
+nnoremap("<C-s>", "source .\\session.vim")
+
+map("<C-l>",
+    "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><c-l>")
 
 map("gr", "<cmd>Telescope lsp_references<CR>")
 nnoremap("gt", "<cmd>Telescope lsp_type_definitions<CR>")
 nnoremap("<Leader>d", "<cmd>Telescope diagnostics<CR>")
+
+vim.keymap.set(
+  "n",
+  "gf",
+  function()
+    if require('obsidian').util.cursor_on_markdown_link() then
+      return "<cmd>ObsidianFollowLink<CR>"
+    else
+      return "gf"
+    end
+  end,
+  { noremap = false, expr = true}
+)
+
 
 nnoremap("<TAB>", "<cmd>bnext<CR>")
 nnoremap("<S-TAB>", "<cmd>bprevious<CR>")
@@ -37,32 +54,8 @@ map("<Leader>k", "<C-W><C-K>")
 map("<Leader>l", "<C-W><C-L>")
 map("<Leader>h", "<C-W><C-H>")
 
-map("<Leader>bd", "<cmd>Bdelete!<CR>")
+map("<Leader>bd", "<cmd>bdelete!<CR>")
 
-vim.cmd([[
-function! CleanBuffers()
-    let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val) < 0 && (getbufline(v:val, 1, "$") == [""])')
-    if !empty(buffers)
-        exe 'bd '.join(buffers, ' ')
-    else
-        echo 'No buffer deleted'
-    endif
-endfunction
-
-nnoremap <silent> <Leader><Tab>  :call CleanBuffers()<CR>
-
-function! ToggleSpell()
-    if &spell =~# 0
-        set spell
-    else
-        set nospell
-    endif
-endfunction
-
-nnoremap <silent> <Leader>s :call ToggleSpell()<cr>
-]])
-
--- other plugins --
 map('x', '"_x')
 
 nnoremap("<Leader>ZZ", "<cmd>:FloatermKill<CR><cmd>mksession! session.vim<CR><cmd>wqa<CR>")
@@ -81,3 +74,4 @@ vim.cmd([[
 
 vim.keymap.set('t', "<Leader>T", "<C-\\><C-N>:FloatermToggle<cr>")
 vim.keymap.set('t', "<C-k>", "<C-\\><C-N>:FloatermKill<cr>")
+vim.keymap.set('t', "<C-h>", "<C-\\><C-N>")

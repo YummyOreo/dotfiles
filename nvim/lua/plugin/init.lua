@@ -3,6 +3,8 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
+    use 'wakatime/vim-wakatime'
+
     -- lua
     use {
         "lewis6991/impatient.nvim"
@@ -14,35 +16,27 @@ return require('packer').startup(function(use)
     }
 
     -- looks
-    use { "C:\\Users\\OreoD\\AppData\\Local\\nvim\\lua\\plugin\\vim-gruvbox8",
+    use { "lifepillar/vim-gruvbox8",
         config = function()
             vim.cmd [[
+            let g:gruvbox_filetype_hi_groups = 1
+            let g:gruvbox_plugin_hi_groups = 1
+            let g:gruvbox_italics = 0
+            let g:gruvbox_bold = 1
             set background=dark
             colorscheme gruvbox8
             ]]
         end
     }
 
-    use { "norcalli/nvim-colorizer.lua", event = { "BufReadPre" }, config = function() require 'colorizer'.setup() end }
-
     use {
         'nvim-tree/nvim-web-devicons',
         module = "nvim-web-devicons",
         config = function()
             require 'nvim-web-devicons'.setup {
-                color_icons = false;
             }
         end
     }
-
-    use {
-        'akinsho/bufferline.nvim', tag = "v3.*",
-        config = function() require("plugin.bufferline_config") end,
-        event = { "BufCreate", "BufEnter" },
-        opt = true
-    }
-
-    use { 'glepnir/dashboard-nvim', config = function() require("plugin.dashboard_config") end }
 
     use {
         'nvim-lualine/lualine.nvim',
@@ -50,11 +44,11 @@ return require('packer').startup(function(use)
         event = { "BufCreate", "BufEnter" },
     }
 
+    use 'mhinz/vim-startify'
+
     -- lang
     -- rust
-    use {
-        "rust-lang/rust.vim",
-    }
+    use "rust-lang/rust.vim"
 
     use {
         'saecki/crates.nvim',
@@ -68,25 +62,12 @@ return require('packer').startup(function(use)
         end,
     }
 
-    -- MD
-    use {
-        "ellisonleao/glow.nvim",
-        cmd = { 'Glow', 'Glow!' },
-        config = function()
-            require("plugin.glow_setup")
-        end
-    }
-
     -- utils
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         requires = { "nvim-telescope/telescope-file-browser.nvim" },
         config = function() require("plugin.telescope_config") end,
-    }
-
-    use {
-        "ntpeters/vim-better-whitespace",
     }
 
     use({
@@ -100,18 +81,9 @@ return require('packer').startup(function(use)
     use { 'nacro90/numb.nvim', config = function() require('numb').setup() end }
 
     use {
-        "tpope/vim-repeat",
-        keys = { "." },
-    }
-
-    use {
         "Raimondi/delimitMate",
         config = function() vim.cmd [[let delimitMate_expand_cr = 1]] end,
         event = { "InsertEnter" }, opt = true,
-    }
-    use {
-        "alvan/vim-closetag",
-        ft = { "html", "xml", "xhtml", "phtml" }
     }
 
     use {
@@ -121,6 +93,7 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
+
     use {
         "ThePrimeagen/harpoon",
         config = function()
@@ -140,8 +113,6 @@ return require('packer').startup(function(use)
 
     use { "tpope/vim-unimpaired" }
 
-    use { "moll/vim-bbye", event = { "BufCreate" } }
-
     -- motion
     use {
         'phaazon/hop.nvim',
@@ -154,6 +125,9 @@ return require('packer').startup(function(use)
     }
 
     -- Lsp/Snips
+
+    use { 'simrat39/symbols-outline.nvim', config = function() require("symbols-outline").setup() end }
+
     use {
 
         "hrsh7th/vim-vsnip",
@@ -165,6 +139,37 @@ return require('packer').startup(function(use)
 
     use { "onsails/lspkind.nvim", opt = true }
 
+    use {
+        "glepnir/lspsaga.nvim",
+        -- branch = "main",
+        commit = "ccdeda9a100547ed65d10d63b05989af1e8e59e7",
+        config = function()
+            require('lspsaga').setup({
+                ui = {
+                    colors = {
+                        --float window normal background color
+                        normal_bg = '#32302f',
+                        --title background color
+                        title_bg = '#ebdbb2',
+                        red = '#cc241d',
+                        magenta = '#d79921',
+                        orange = '#d65d0e',
+                        yellow = '#d79921',
+                        green = '#98971a',
+                        cyan = '#83a598',
+                        blue = '#458588',
+                        purple = '#d79921',
+                        white = '#ebdbb2',
+                        black = '#1d2021',
+                    },
+                },
+            })
+            vim.cmd [[
+            hi! LspSagaWinbarSep guifg=#ebdbb2
+            ]]
+        end,
+    }
+
     -- CMP
     use { "hrsh7th/nvim-cmp",
         requires = {
@@ -172,12 +177,14 @@ return require('packer').startup(function(use)
             { "hrsh7th/cmp-path", opt = true },
             { "hrsh7th/cmp-buffer", opt = true },
             { "hrsh7th/cmp-nvim-lsp", opt = true },
+            { 'j-hui/fidget.nvim', opt = true }
         },
         event = { "InsertEnter", "CmdlineEnter" },
         config = function()
             vim.cmd [[
-                        PackerLoad lspkind.nvim cmp-cmdline cmp-path cmp-buffer vim-vsnip cmp-nvim-lsp friendly-snippets
+                        PackerLoad lspkind.nvim cmp-cmdline cmp-path cmp-buffer vim-vsnip cmp-nvim-lsp friendly-snippets fidget.nvim
                     ]]
+            require "fidget".setup {}
             require("plugin.cmp_config")
         end
     }
@@ -195,9 +202,7 @@ return require('packer').startup(function(use)
     } }
 
     -- Treesitter
-    use { 'nvim-treesitter/nvim-treesitter', requires = {
-        { "nvim-treesitter/nvim-treesitter-context", opt = true },
-    }, config = function()
+    use { 'nvim-treesitter/nvim-treesitter', config = function()
         require("plugin.treesitter_config")
     end }
 
@@ -206,8 +211,4 @@ return require('packer').startup(function(use)
 
     use { 'voldikss/vim-floaterm', cmd = { "FloatermNew", "FloatermKill" } }
 
-
-    -- other
-
-    use {'ThePrimeagen/vim-be-good', cmd="VimBeGood"}
 end)
