@@ -1,5 +1,3 @@
-bell:
-  enabled: false
 colors:
   bright:
     black: '#928374'
@@ -101,7 +99,7 @@ cursor:
   blinking: true
 font:
   normal:
-    family: TerminessTTF NF
+    family: DinaRemaster NF
   size: 12
 key_bindings:
 - Action: SpawnNewInstance
@@ -110,19 +108,13 @@ key_bindings:
 - action: Quit
   key: W
   mods: Alt
-- chars: "\f"
-  key: Backslash
-  mods: Control
-- chars: "\f"
-  key: Slash
-  mods: Control
 mouse_bindings:
 - action: Copy
   mouse: Middle
 window:
-  opacity: 0.8
+  opacity: 1.0
   padding:
-    x: 20
-    y: 20
+    x: 10
+    y: 10
   startup_mode: Maximized
   title: Alacritty
