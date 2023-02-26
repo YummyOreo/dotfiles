@@ -95,8 +95,6 @@ colors:
   vi_mode_cursor:
     cursor: CellForeground
     text: CellBackground
-cursor:
-  blinking: true
 font:
   normal:
     family: DinaRemaster NF
@@ -111,6 +109,8 @@ key_bindings:
 mouse_bindings:
 - action: Copy
   mouse: Middle
+shell:
+  program: nu
 window:
   opacity: 1.0
   padding:
