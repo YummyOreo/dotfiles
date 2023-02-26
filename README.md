@@ -14,3 +14,10 @@ Run:
 :PackerInstall
 :PackerCompile
 ```
+# Nushell:
+Plugins:
+- https://github.com/JosephTLyons/nu_plugin_periodic_table
+- https://github.com/fdncred/nu_plugin_regex
+## Uses:
+Starship
+Coreutils
