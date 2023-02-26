@@ -20,7 +20,7 @@ nnoremap('<C-u>', '<C-u>zz')
 nnoremap('n', 'nzzzv')
 nnoremap('N', 'Nzzzv')
 
-nnoremap("<C-s>", "source .\\session.vim")
+-- nnoremap("<C-s>", "source .\\session.vim")
 
 map("<C-l>",
     "<cmd>nohlsearch<cr><cmd>diffupdate<cr><cmd>syntax sync fromstart<cr><c-l>")
@@ -28,19 +28,6 @@ map("<C-l>",
 map("gr", "<cmd>Telescope lsp_references<CR>")
 nnoremap("gt", "<cmd>Telescope lsp_type_definitions<CR>")
 nnoremap("<Leader>d", "<cmd>Telescope diagnostics<CR>")
-
-vim.keymap.set(
-  "n",
-  "gf",
-  function()
-    if require('obsidian').util.cursor_on_markdown_link() then
-      return "<cmd>ObsidianFollowLink<CR>"
-    else
-      return "gf"
-    end
-  end,
-  { noremap = false, expr = true}
-)
 
 
 nnoremap("<TAB>", "<cmd>bnext<CR>")
@@ -66,12 +53,19 @@ map('<Leader>B', '<cmd>HopWordBC<CR>', { noremap = true, silent = true })
 
 nnoremap("<Leader>gg", "<cmd>Glow<CR>")
 
-nnoremap("<Leader>T", "<cmd>FloatermNew<cr>")
 vim.cmd([[
     let g:floaterm_keymap_toggle = '<Leader>T'
-    let g:floaterm_shell = 'powershell'
+    let g:floaterm_shell = 'nu'
 ]])
 
+nnoremap("<Leader>T", "<cmd>FloatermNew<cr>")
+nnoremap("<Leader>N", "<cmd>FloatermNew<cr>")
 vim.keymap.set('t', "<Leader>T", "<C-\\><C-N>:FloatermToggle<cr>")
+vim.keymap.set('t', "<Leader>N", "<C-\\><C-N>:FloatermNew<cr>")
+vim.keymap.set('t', "<Leader>n", "<C-\\><C-N>:FloatermNext<cr>")
 vim.keymap.set('t', "<C-k>", "<C-\\><C-N>:FloatermKill<cr>")
 vim.keymap.set('t', "<C-h>", "<C-\\><C-N>")
+
+vim.keymap.set("n", "<leader>bs", function()
+    require("browse").browse()
+end)

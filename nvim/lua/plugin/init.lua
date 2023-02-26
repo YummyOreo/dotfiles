@@ -29,6 +29,19 @@ return require('packer').startup(function(use)
         end
     }
 
+    use { "xiyaowong/nvim-transparent", config = function()
+        require("transparent").setup({
+            enable = true, -- boolean: enable transparent
+            extra_groups = {},
+            exclude = {
+                "FidgetTask",
+                "FidgetTitle",
+                "FloatShadow",
+                "FloatShadowThrough",
+            }, -- table: groups you don't want to clear
+        })
+    end }
+
     use {
         'nvim-tree/nvim-web-devicons',
         module = "nvim-web-devicons",
@@ -57,9 +70,18 @@ return require('packer').startup(function(use)
         requires = { 'nvim-lua/plenary.nvim' },
         config = function()
             require('crates').setup()
-            vim.api.nvim_set_keymap("n", "<leader>cu", "<cmd> lua require('crates').upgrade_all_crates()<cr>",
-                { noremap = true })
         end,
+    }
+
+    -- Nu
+    use {
+        'LhKipp/nvim-nu',
+        -- run =  ":TSInstall nu",
+        config = function()
+            require 'nu'.setup {
+                use_lsp_features = false,
+            }
+        end
     }
 
     -- utils
@@ -99,7 +121,6 @@ return require('packer').startup(function(use)
         config = function()
             local mark = require("harpoon.mark")
             local ui = require("harpoon.ui")
-
 
             vim.keymap.set("n", "<leader>a", mark.add_file)
             vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
@@ -184,8 +205,15 @@ return require('packer').startup(function(use)
             vim.cmd [[
                         PackerLoad lspkind.nvim cmp-cmdline cmp-path cmp-buffer vim-vsnip cmp-nvim-lsp friendly-snippets fidget.nvim
                     ]]
-            require "fidget".setup {}
             require("plugin.cmp_config")
+            require "fidget".setup {
+                window = {
+                    relative = "editor", -- where to anchor, either "win" or "editor"
+                    blend = 0, -- &winblend for the window
+                    zindex = nil, -- the zindex value for the window
+                    border = "single", -- style of border for the fidget window
+                },
+            }
         end
     }
 
@@ -210,5 +238,51 @@ return require('packer').startup(function(use)
     -- term
 
     use { 'voldikss/vim-floaterm', cmd = { "FloatermNew", "FloatermKill" } }
+
+    -- web
+    use({
+        "lalitmee/browse.nvim",
+        requires = { "nvim-telescope/telescope.nvim" },
+        config = function()
+            -- default values for the setup
+            require('browse').setup({
+                -- search provider you want to use
+                provider = "google", -- duckduckgo, bing
+
+                -- either pass it here or just pass the table to the functions
+                -- see below for more
+                bookmarks = {
+                    ["rust"] = {
+                        ["docs"] = "https://doc.rust-lang.org/book/",
+                        ["docs crates"] = "https://docs.rs/",
+                        ["crates"] = "https://crates.io/",
+                        ["cheatsheet"] = "https://cheats.rs/",
+                    },
+
+                    ["draw.io"] = "https://app.diagrams.net/",
+
+                    ["code"] = {
+                        ["regex"] = {
+                            ["cheatsheet"] = "https://quickref.me/regex",
+                            ["test"] = "https://regex101.com/",
+                        },
+                        ["docs"] = "https://devdocs.io/",
+                        ["stackoverflow"] = "https://stackoverflow.com/",
+                        ["algorithms"] = "https://www.algorithm-archive.org/"
+                    },
+
+                    ["youtube"] = "https://youtube.com",
+                    ["twitch"] = "https://twitch.tv",
+                    ["github"] = {
+                        "https://github.com",
+                        ["code_search"] = "https://github.com/search?q=%s&type=code",
+                        ["repo_search"] = "https://github.com/search?q=%s&type=repositories",
+                        ["issues_search"] = "https://github.com/search?q=%s&type=issues",
+                        ["pulls_search"] = "https://github.com/search?q=%s&type=pullrequests",
+                    },
+                }
+            })
+        end
+    })
 
 end)
