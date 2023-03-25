@@ -5,7 +5,7 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
-format = '''$directory$git_branch$rust(yellow)$package
+format = '''\[!shell-info!\] $git_branch$rust(yellow)$package
 [➜ ](fg:#d65d0e)
 '''
 
@@ -24,4 +24,3 @@ style = "fg:#d65d0e"
 [package]
 style = "yellow"
 # disabled = true
-
