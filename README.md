@@ -26,6 +26,7 @@ Coreutils
 ## Packages:
 <details>
 <summary> Cargo:</summary>
+  
 - atuin (from main)
 - bacon
 - bob-nvim
@@ -47,6 +48,7 @@ Coreutils
 </details>
 <details>
 <summary> Scoop:</summary>
+  
 - glow
 - gh
 - ffmpeg
@@ -63,10 +65,10 @@ Coreutils
 </details>
 <details>
 <summary> Choco:</summary>
+  
 - bat
 - bottem
 - fd
 - fzf
 - tldr
-
 </details>
