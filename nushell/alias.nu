@@ -15,4 +15,3 @@ alias explorer = powershell -c explorer
 alias ocacity = python 'C:\\Users\\OreoD\\AppData\\Roaming\\alacritty\\change_o.py'
 
 alias zellij = wsl -u root -- /home/z/.cargo/bin/zellij
-
