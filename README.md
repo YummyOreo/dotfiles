@@ -18,6 +18,7 @@ Run:
 Plugins:
 - https://github.com/JosephTLyons/nu_plugin_periodic_table
 - https://github.com/fdncred/nu_plugin_regex
+- nu_plugin_query (in the nu repo)
 ## Uses:
 Starship
 Coreutils
