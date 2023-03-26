@@ -72,3 +72,7 @@ Coreutils
 - fzf
 - tldr
 </details>
+<details>
+<summary> Other:</summary>
+- Delta
+</details>
