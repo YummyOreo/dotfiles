@@ -2,7 +2,7 @@
 > Warning:
 >
 > Don't just copy these. There is some stuff you do have to fill out. So go through these and know what they do!
-## Vim (Neovim v0.8.0)
+## Vim (Neovim v0.8.3)
 > Warning :
 >
 > This is not sorted at all! So it will look ugly.
