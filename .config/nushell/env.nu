@@ -59,22 +59,17 @@ let-env NU_PLUGIN_DIRS = [
 ]
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-    # let-env Path = ($env.Path | split row (char esep) | prepend 'C:\Program Files\PostgreSQL\15\bin')
-path-add -p 'C:\Program Files\PostgreSQL\15\bin'
+path-add -p '~/go/bin/'
 
 def-env "path-add" [
     --prepend(-p) # prepend instead of appending.
     ...paths # the paths to add
     ] {
-    let p = ($env.Path? | default $env.PATH?)
-
-    let p = if $prepend {
-        ($p | prepend  $paths)
+    let-env PATH = if $prepend {
+        ($env.PATH | prepend  $paths)
     } else {
-        ($p | append $paths)
+        ($env.PATH | append $paths)
     }
-
-    try {let-env Path = $p} catch {let-env PATH = $p}
 }
 
 # --- CUSTOM ---
@@ -83,5 +78,4 @@ let-env BAT_THEME = "gruvbox-dark"
 # --- CARGO ---
 
 # let-env CARGO_REGISTRIES_CRATES_IO_PROTOCOL = 'sparse'
-
-let-env ATUIN_SESSION = $"{atuin uuid}"
+let-env EDITOR = "nvim"

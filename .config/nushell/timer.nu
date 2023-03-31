@@ -3,27 +3,27 @@ def timer [time: string, name: string] {
 }
 
 def 'timer work' [] {
-    timer 15m Working
+    timer '15m' Working
     wsl espeak "Work session over"
 }
 
 def 'timer work 1' [] {
-    timer 25m Working
+    timer '25m' Working
     wsl espeak "Work session over"
 }
 
 def 'timer work code' [] {
-    timer 60m Working
+    timer '60m' Working
     wsl espeak "Work session over"
 }
 
 def 'timer break' [] {
-    timer 5m Break!
+    timer '5m' Break!
     wsl espeak "Break session over"
 }
 
 def 'timer break-1' [] {
-    timer 10m Break!
+    timer '10m' Break!
     wsl espeak "Break session over"
 }
 

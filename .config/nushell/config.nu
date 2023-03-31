@@ -1,6 +1,6 @@
 def path-pretty-no-link [] {
     let path = $in
-    let home = $env.USERPROFILE
+    let home = $env.HOME
     let link = $"($path)"
 
     let text = if ($path | str starts-with $home) or ($path | str starts-with 'D:\Desktop 2') { # Check if path can be shortened with '~'
@@ -699,22 +699,17 @@ let-env config = {
 }
 source ~/.zoxide.nu
 
-source ~/AppData/Roaming/nushell/alias.nu
-source ~/AppData/Roaming/nushell/commands.nu
-source ~/AppData/Roaming/nushell/timer.nu
-source ~/AppData/Roaming/nushell/weather.nu
-source ~/AppData/Roaming/nushell/youtube.nu
+source ~/.config/nushell/alias.nu
+source ~/.config/nushell/commands.nu
+source ~/.config/nushell/timer.nu
+source ~/.config/nushell/weather.nu
+source ~/.config/nushell/youtube.nu
 
 source ~/.cache/starship/init.nu
 
-# source ~/AppData/Roaming/nushell/completion/cargo.nu
-source ~/AppData/Roaming/nushell/completion/git.nu
-
-if $env.PWD == "C:\\WINDOWS\\system32" or $env.PWD == "C:\\WINDOWS" or $env.PWD == "D:\\Desktop 2\\pin_app\\target\\release" {
-    # echo "test"
-    cd "D:\\Desktop 2"
-}
+# source ~/.config/nushell/completion/cargo.nu
+source ~/.config/nushell/completion/git.nu
 
 print $"(ansi title)($env.PWD | path-pretty-no-link)(ansi st)"
 clear
-source ~/AppData/Roaming/nushell/banner.nu
+source ~/.config/nushell/banner.nu

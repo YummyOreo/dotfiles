@@ -19,7 +19,7 @@ def current-shell [] {
 
 def path-pretty [] {
     let path = $in
-    let home = $env.USERPROFILE
+    let home = $env.HOME
     let link = $"($path)"
 
     let text = if ($path | str starts-with $home) or ($path | str starts-with 'D:\Desktop 2') { # Check if path can be shortened with '~'
