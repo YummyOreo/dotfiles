@@ -7,3 +7,5 @@ in nushell run:
 then
 `ssh-add ~/.ssh/id_rsa`
 
+## Foldel link fix:
+`xdg-mime default thunar.desktop inode/directory`

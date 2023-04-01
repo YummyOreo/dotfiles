@@ -607,3 +607,298 @@ lazygit
 cd dotfiles
 cp ~/.config/nushell/ ./.config/
 cp ~/.config/nushell ./.config/
+cp ~/.config/nushell/ ./.config/ -r
+ls
+ls .config
+cp ~/.config/hypr/ ./.config/ -r
+cp ~/.config/alacritty/ ./.config/ -r
+cd config
+ls dconf
+vim dconf/user
+ls dconf
+cd config
+ls gtk-2.0
+bat gtk-2.0/gtkfilechooser.ini
+ls gtk-3.0
+ls gtk-3.0/settings.ini
+bat gtk-3.0/settings.ini
+cp ~/.config/gtk-3.0/ ./.config/ -r
+cp ~/.config/mako/ ./.config/ -r
+cd config
+ls pulse
+bat pulse/cookie
+cp ~/.config/swaylock/ ./.config/ -r
+cp ~/.config/waybar/ ./.config/ -r
+cp ~/.config/wlogout/ ./.config/ -r
+cp ~/.config/wofi/ ./.config/ -r
+cd config
+ls xfce4/
+bat xfce4/xfconf/
+ls xfce4/xfconf/
+ls xfce4/xfconf/xfce-perchannel-xml/
+bat xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+bat xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+cd nushell
+bat config.nu
+cp ~/.cache/starship/ ./.cache -r
+ls
+lazygit
+ls ./.config/
+git pull origin linux
+lazygit
+git config pull.rebase false
+git pull origin linux
+git push origin linux
+bash
+git pull origin linux
+ssh-add ~/.ssh/id_rsa_key
+ssh-add -l
+ssh-agent -s
+ssh-add -l
+bash
+git pull origin linux
+ssh-add ~/.ssh/id_rsa
+ssh-agent
+eval ssh-agent
+git pull
+cd dotfiles
+git pull
+ssh -T git@github.com
+ssh-add ~/.ssh/id_rsa &>/dev/null
+bash
+git pull
+ssh-agent
+ssh-add ~/.ssh/id_rsa &>/dev/null
+ssh-agent -c | sd 'setenv ([\w_]+) (.+);' '$1 $2' | lines | first 2 | split column ' ' name value | load-env
+ssh-agent -c | sed 'setenv ([\w_]+) (.+);' '$1 $2' | lines | first 2 | split column ' ' name value | load-env
+ssh-agent -c | sed 'setenv ([\w_]+) (.+);' '$1 $2' | lines | first 2 | split column ' ' name value
+ssh-agent -c
+ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
+git pull
+ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
+ssh-add ~/.ssh/id_rsa &>/dev/null
+git pull
+vim readme.md
+cd .config/
+cp nvim/ ~/.config/ -r
+nvim
+vim
+cp ~/.config/nvim ./
+cp ~/.config/nvim/ ./ -r
+ls
+ls nvim
+cd ..
+lazygit
+bluez
+bluetooth
+bluetoothctl
+cd hypr
+vim hyprland.conf
+exec-once = systemctl start bluetooth.service
+systemctl start bluetooth.service
+vim hyprland.conf
+systemctl --use
+systemctl --user
+systemctl --user --help
+bluetoothctl
+bluetooth-player
+bluetooth
+pulse
+pipewire-pulse 
+pipewire-pulse  --help
+cd ..
+ls
+cd pulse/
+ls
+cd ..
+bluetoothctl
+cd hypr
+cd downl
+vim message.txt
+vim hyprland.conf
+cd dotfiles
+cp ~/.config/hypr/ ./.config/ -r
+lazygit
+git pull
+cd .ssh
+ls
+vim config
+git pull
+cd dotfiles
+git pull
+service sshd restart
+sshd restart
+/etc/init.d/sshd restart
+which sshd
+/usr/bin/sshd restart
+/usr/bin/sshd 
+cd dotfiles
+git pull
+ssh-add ~/.ssh/id_rsa 
+ssh-add -k ~/.ssh/id_rsa 
+ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
+ssh-add -k ~/.ssh/id_rsa 
+cd dotfiles
+git pull
+cd dotfiles
+git pull
+ssh-add
+ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
+ssh-add 
+git pull
+cd dotfiles
+git pull
+ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
+ssh-add -k 
+cd dotfiles
+git pull
+ssh-add -k 
+bash
+cd dotfiles
+git pull
+help ssh-agent
+ssh-agent --help
+ssh-agent -c --help
+cd nushell
+ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
+git pull
+cd dot
+git pull
+ssh-add -k
+cd dot
+vim env.nu
+cd ssh
+vim con
+vim config
+cd dot
+git pull
+cd dot
+git pull
+man ssh-add
+ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
+git pull
+cd nushell
+cd dot
+git pull
+vim env.nu
+cd hypr
+vim hyprland.conf
+go install go.senan.xyz/cliphist@latest
+wl-paste
+cd go
+cd bin
+ls
+cliphist
+cd ..
+yay -S qimgv-git
+mpv
+cd nushell
+exa
+sudo pacman -S xplr
+thundar
+thunar
+thunar 
+thunar --help
+thunar --deamon
+thunar --daemon
+thunar --help-all
+bosh thunar
+bash thunar
+bash -e thunar
+bash
+cargo install the-way
+test.com
+ls
+cwall
+cargo install cargo-info
+cargo info full cargo-info
+cargo info full cargo-info | reject versions
+cd usr/share/
+cd /user/share
+cd /usr/share
+ls
+cd applications/
+ls
+thunar .
+open
+open .
+open ./
+cd Downloads/
+open message.txt
+cd ..
+open swappy-20230330_105606.png
+sudo pacman -S engrampa
+xdottool
+xdotool
+sudo pacman -S xdotool
+xdotool
+sudo pacman -R xdotool
+xdg-open
+xdg-open ./
+xdg-open --help
+xdg-open --manual
+xdg-mime query default (<\n>xdg-mime query filetype ./)
+cd ..
+ls
+cd gtk-3.0
+ls
+vim settings.ini
+ cd ..
+ls gtk-2.0
+cd gtk-2.0
+vim gtkfilechooser.ini
+xdg-mime default thunar.desktop inode/directory
+ls
+cd ..
+bat gtk-3.0/settings.ini
+bat gtk-2.0/gtkfilechooser.ini
+vim
+cd ..
+cd dotfiles
+vim README.md
+git push origin linux
+git pull
+cd .config/systemd
+cd .config
+cd ..
+cd .config
+ls
+mkdir systemd
+cd systemd
+mkdir user
+cd user
+touch ssh-agent.service
+viim ssh-agent.service
+cd hypr
+cd ..
+cd nushell
+cd dotfiles
+git pull
+ssh-add 
+cd .config/nushell
+vim env.nu
+cd nushell
+vim env.nu
+$env.SSH_AUTH_SOCK
+cd /run/user/100/
+cd /run/user/
+cd 1000
+cd ./1000/
+ls
+ls ssh
+cd systemd
+ls
+cd user
+vim ssh-agent.service
+touch ssh-agent.service
+ls
+systemctl --user enable ssh-agent
+systemctl --user start ssh-agent
+ssh-add 
+cd dotfile
+git pull
+cd hypr
+ls
+cd dotfiles
+git pull
+cp ~/.config/hypr/ ./.config/ -r

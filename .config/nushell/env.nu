@@ -79,3 +79,6 @@ let-env BAT_THEME = "gruvbox-dark"
 
 # let-env CARGO_REGISTRIES_CRATES_IO_PROTOCOL = 'sparse'
 let-env EDITOR = "nvim"
+
+# SSH
+let-env SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/ssh-agent.socket"
