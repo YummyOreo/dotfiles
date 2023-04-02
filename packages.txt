@@ -18,6 +18,7 @@ qimgv-git
 glow
 github-cli
 vhs
+git-delta
 
 hyprland-bin
 waybar-hyprland
