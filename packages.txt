@@ -15,6 +15,9 @@ npm
 starship
 xdg-desktop-portal
 qimgv-git
+glow
+github-cli
+vhs
 
 hyprland-bin
 waybar-hyprland
@@ -46,6 +49,9 @@ Cargo:
 porsmo
 cargo-info
 cargo-insta
+cargo-binstall
+sccache
+irust
 alacritty
 bat
 bottom
