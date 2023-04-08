@@ -51,7 +51,11 @@ tooltip {
     border: none;
     /* border-radius: 5px; */
 }
-
+#custom-launch_wofi,
+#cpu,
+#disk,
+#custom-updates,
+#memory,
 #custom-power_profile,
 #custom-weather,
 #window,
@@ -72,6 +76,21 @@ tooltip {
     border: 1px solid #1d2021;
 }
 
+#cpu,
+#disk,
+#memory {
+    border-left: none;
+    border-right: none;
+}
+
+
+#custom-launch_wofi {
+    color: #89b4fa;
+    margin-left: 10px;
+    border-right: 0px;
+    border-radius: 5px 0px 0px 5px;
+}
+
 #temperature {
     border-radius: 5px 0px 0px 5px;
 }
@@ -89,20 +108,25 @@ tooltip {
 #tray {
     border-radius: 5px;
     margin-right: 10px;
+    margin-left: 5px;
 }
 
 #workspaces {
     background: #282828;
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 0px 0px 0px 0px;
     padding-left: 10px;
+    padding-right: 0px;
     border-left: none;
-    margin-left: 10px;
+    border-right: none;
+    margin-left: 0;
 }
 
 #window {
-    border-radius: 5px 5px 5px 5px;
-    margin-left: 60px;
-    margin-right: 60px;
+    border-radius: 0px 5px 5px 0px;
+    margin-left: 00px;
+    margin-right: 00px;
+    min-width: 250px;
+    border-left: none;
     /* min-width: 350px; */
 }
 
@@ -110,7 +134,7 @@ tooltip {
     color: #ebdbb2;
     border-radius: 5px;
     margin-left: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
     border-right: none;
 }
 
@@ -130,6 +154,7 @@ tooltip {
     color: #8ec07c;
     border-left: none;
     border-right: none;
+    border-radius: 0px 0px 0px 0px;
 }
 
 #pulseaudio.microphone {

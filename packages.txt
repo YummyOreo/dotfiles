@@ -45,6 +45,8 @@ xfce4-settings
 dracula-gtk-theme
 dracula-icons-git
 xdg-desktop-portal-hyprland-git
+blueman
+networkmanager
 
 Cargo:
 porsmo

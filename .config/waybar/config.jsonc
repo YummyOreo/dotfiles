@@ -9,13 +9,28 @@
     // "modules-left": ["wlr/workspaces", "hyprland/window"],
     // "modules-center": ["clock","custom/weather"],
     // "modules-right": ["network","battery","backlight","pulseaudio","pulseaudio#microphone","tray"],
-    "modules-left": ["wlr/workspaces", "custom/weather"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["network","battery","pulseaudio", "clock","tray"],
+    "modules-left": [
+        "custom/launch_wofi",
+        "wlr/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "battery",
+        "pulseaudio",
+        "cpu",
+        "memory",
+        "disk",
+        "custom/weather",
+        "tray"
+    ],
     "hyprland/window": {
-        "format": "{}"
+        "format": "{}",
+        "max-length": 50
     },
-
     "wlr/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -33,8 +48,12 @@
         //     "10": []
         // }
     },
-
-    "custom/power_profile":{
+    "custom/launch_wofi": {
+        "format": "",
+        "on-click": "pkill wofi; wofi -n",
+        "tooltip": false
+    },
+    "custom/power_profile": {
         //shows the current power profile and switches to next on click
         "exec": "asusctl profile -p | sed s:'Active profile is'::",
         "interval": 30,
@@ -42,35 +61,56 @@
         "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
         "signal": 8
     },
-
-   "custom/weather" : {
-        //shows the current weather and forecast
-        "tooltip" : true,
-        "format" : "{}",
-        "interval" : 30,
-        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-        "return-type" : "json"
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 15,
+        "on-click": "alacritty -o window.title=Waybar_Btm -e btm"
     },
-
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_used}%",
+        "path": "/",
+        "tooltip": true,
+        "tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)",
+        "on-click": "alacritty -o window.title=Waybar_Btm -e btm"
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 15,
+        "tooltip": true,
+        "tooltip-format": "Memory - {used:0.1f}GB used",
+        "on-click": "alacritty -o window.title=Waybar_Btm -e btm"
+    },
+    "custom/weather": {
+        //shows the current weather and forecast
+        "tooltip": true,
+        "format": "{}",
+        "interval": 30,
+        "exec": "~/.config/waybar/scripts/waybar-wttr.py",
+        "return-type": "json"
+    },
     "tray": {
         "icon-size": 18,
         "spacing": 10
     },
-
     "clock": {
         "format": "{: %I:%M %p   %a, %b %e}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
-
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
-        "format-icons": ["", "", ""],
+        "format-icons": [
+            "",
+            "",
+            ""
+        ],
         "on-scroll-up": "brightnessctl set 1%+",
         "on-scroll-down": "brightnessctl set 1%-",
         "min-length": 6
     },
-
     "battery": {
         "states": {
             "good": 95,
@@ -81,9 +121,20 @@
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
-
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "tooltip": false,
@@ -99,10 +150,13 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         }
     },
-
     "pulseaudio#microphone": {
         "format": "{format_source}",
         "format-source": " {volume}%",
@@ -112,14 +166,12 @@
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
     },
-
     "temperature": {
         "thermal-zone": 1,
         "format": "{temperatureF}°F ",
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C "
     },
-
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "  {signalStrength}%",
@@ -129,13 +181,12 @@
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
     },
-
     "bluetooth": {
-	    "format": " {status}",
-	    "format-disabled": "", // an empty format will hide the module
-	    "format-connected": " {num_connections}",
-	    "tooltip-format": "{device_alias}",
-	    "tooltip-format-connected": " {device_enumerate}",
-	    "tooltip-format-enumerate-connected": "{device_alias}"
+        "format": " {status}",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": " {num_connections}",
+        "tooltip-format": "{device_alias}",
+        "tooltip-format-connected": " {device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}"
     }
 }
