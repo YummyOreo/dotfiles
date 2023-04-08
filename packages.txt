@@ -7,7 +7,7 @@ google-chrome-stable
 xclip
 jdk-openjdk
 jre-openjdk
-multimc-bin
+multimc-bin (fromw souce)
 neofetch
 neovim
 nodejs
@@ -19,6 +19,8 @@ glow
 github-cli
 vhs
 git-delta
+unzip
+zip
 
 hyprland-bin
 waybar-hyprland
