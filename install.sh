@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+INSTLOG="install.log"
 
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to continue with the install. WARNING do not run this on a system that has something already installed. (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
@@ -43,19 +45,14 @@ fi
 echo -e "$COK - Updating yay database..."
 yay -Suy --noconfirm &>> $INSTLOG
 
-for PKG in hyprland-bin waybar-hyprland swaybg swaylock-effects wofi wlogout mako thunar noto-fonts-emoji polkit-gnome python-requests starship swappy grim slurp pamixer brightnessctl gvfs bluez bluez-utils lxappearance xfce4-settings dracula-gtk-theme dracula-icons-git xdg-desktop-portal-hyprland-git blueman networkmanager
+for PKG in hyprland waybar-hyprland swaybg swaylock-effects wofi wlogout mako thunar noto-fonts-emoji polkit-gnome python-requests starship swappy grim slurp pamixer brightnessctl gvfs bluez bluez-utils lxappearance xfce4-settings dracula-gtk-theme dracula-icons-git xdg-desktop-portal-hyprland-git blueman networkmanager
 do
     if yay -Qs $PKG > /dev/null ; then
         echo -e "$PKG is already installed."
     else
         echo -e "$PKG - Now installing $PKG ..."
         yay -S --noconfirm $SOFTWR &>> $INSTLOG
-        if yay -Qs $PKG > /dev/null ; then
             echo "$PKG was installed."
-        else
-            echo -e "$PKG - $PKG install had failed, please check the install.log"
-            exit
-        fi
     fi
 done
 
@@ -67,12 +64,7 @@ do
     else
         echo -e "$PKG - Now installing $PKG ..."
         yay -S --noconfirm $SOFTWR &>> $INSTLOG
-        if yay -Qs $PKG > /dev/null ; then
-            echo "$PKG was installed."
-        else
-            echo -e "$PKG - $PKG install had failed, please check the install.log"
-            exit
-        fi
+        echo "$PKG was installed."
     fi
 done
 
@@ -86,55 +78,56 @@ echo -e "$CNT - Cleaning out conflicting xdg portals..."
 yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 
 # Install cargo
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+if cargo > /dev/null ; then
 
-for PKG in porsmo cargo-info cargo-insta cargo-binstall sccache irust alacritty bat bottom coreutils exa ripgrep the-way zoxide just
-do
-        echo -e "$PKG - Now installing $PKG ..."
-        yay -S --noconfirm $SOFTWR &>> $INSTLOG
-        if cargo install $PKG > /dev/null ; then
-            echo "$PKG was installed."
-        else
-            echo -e "$PKG - $PKG install had failed, please check the install.log"
-            exit
-        fi
-done
+    for PKG in porsmo cargo-info cargo-insta cargo-binstall sccache irust alacritty bat bottom coreutils exa ripgrep the-way zoxide just
+    do
+            echo -e "$PKG - Now installing $PKG ..."
+            cargo install $PKG
+                echo "$PKG was installed."
+    done
 
-# install nu
-git clone https://github.com/nushell/nushell
-cd nushell
-cargo install --path .
-cd ..
+    # install nu
+    git clone https://github.com/nushell/nushell
+    cd nushell
+    cargo install --path .
+    cd ..
 
-echo "Copying config files"
-mkdir ~/.config/
-cp ./.config/nushell/ ~/.config/
-cp ./.config/starship.toml ~/.config/
-cp ./.config/hypr/ ~/.config/
-cp ./.config/mako/ ~/.config/
-cp ./.config/nvim/ ~/.config/
-cp ./.config/wofi/ ~/.config/
-cp ./.config/waybar/ ~/.config/
-cp ./.config/gtk-3.0/ ~/.config/
-cp ./.config/systemd/ ~/.config/
-cp ./.config/swaylock/ ~/.config/
-cp ./.config/alacritty/ ~/.config/
+    echo "Copying config files"
+    mkdir ~/.config/
+    cp ./.config/nushell/ ~/.config/
+    cp ./.config/starship.toml ~/.config/
+    cp ./.config/hypr/ ~/.config/
+    cp ./.config/mako/ ~/.config/
+    cp ./.config/nvim/ ~/.config/
+    cp ./.config/wofi/ ~/.config/
+    cp ./.config/waybar/ ~/.config/
+    cp ./.config/gtk-3.0/ ~/.config/
+    cp ./.config/systemd/ ~/.config/
+    cp ./.config/swaylock/ ~/.config/
+    cp ./.config/alacritty/ ~/.config/
 
-mkdir ~/.ssh/
-mkdir ~/.cache/starship/
-cp ./.cargo/ ~/
-cp ./.cache/init.nu ~/.cache/starship/
-cp ./.ssh/ ~/
-cp ./.themes/ ~/
-mkdir /usr/local/share/fonts/
-cp ./DinaRemaster NF.ttc /usr/local/share/fonts/
+    mkdir ~/.ssh/
+    mkdir ~/.cache/starship/
+    cp ./.cargo/ ~/
+    cp ./.cache/init.nu ~/.cache/starship/
+    cp ./.ssh/ ~/
+    cp ./.themes/ ~/
+    mkdir /usr/local/share/fonts/
+    cp ./DinaRemaster NF.ttc /usr/local/share/fonts/
 
-echo "Please install brew, then restart system, then install neocowsay"
-sleep 10s
-echo -e "$CNT - Script had completed!"
-read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to start Hyprland now? (y,n) ' HYP
-if [[ $HYP == "Y" || $HYP == "y" ]]; then
-    Hyprland
+    echo "Please install brew, then restart system, then install neocowsay"
+    sleep 10s
+    echo -e "$CNT - Script had completed!"
+    read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to start Hyprland now? (y,n) ' HYP
+    if [[ $HYP == "Y" || $HYP == "y" ]]; then
+        Hyprland
+    else
+        exit
+    fi
 else
-    exit
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    echo 'Please reboot then run this script again!'
 fi
+
+
