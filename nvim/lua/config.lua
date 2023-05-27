@@ -37,7 +37,7 @@ vim.opt.shiftwidth = 4
 vim.opt.smarttab = true
 
 -- clipboard --
-vim.opt.clipboard = "unnamed"
+vim.opt.clipboard = "unnamedplus"
 
 vim.cmd([[
 

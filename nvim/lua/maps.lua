@@ -47,7 +47,9 @@ map('x', '"_x')
 
 nnoremap("<Leader>ZZ", "<cmd>:FloatermKill<CR><cmd>wqa<CR>")
 
-map('<Leader>w', '<cmd>HopWordAC<CR>', { noremap = true, silent = true })
+map('<Leader>to', '<cmd>HopChar1MW<CR>', { noremap = true, silent = true })
+map('<Leader>tt', '<cmd>HopChar2MW<CR>', { noremap = true, silent = true })
+map('<Leader>/', '<cmd>HopPatternMW<CR>', { noremap = true, silent = true })
 map('<Leader>W', '<cmd>HopWordCurrentLine<CR>', { noremap = true, silent = true })
 map('<Leader>B', '<cmd>HopWordBC<CR>', { noremap = true, silent = true })
 
@@ -59,10 +61,7 @@ vim.cmd([[
 ]])
 
 nnoremap("<Leader>T", "<cmd>FloatermNew<cr>")
-nnoremap("<Leader>N", "<cmd>FloatermNew<cr>")
 vim.keymap.set('t', "<Leader>T", "<C-\\><C-N>:FloatermToggle<cr>")
-vim.keymap.set('t', "<Leader>N", "<C-\\><C-N>:FloatermNew<cr>")
-vim.keymap.set('t', "<Leader>n", "<C-\\><C-N>:FloatermNext<cr>")
 vim.keymap.set('t', "<C-k>", "<C-\\><C-N>:FloatermKill<cr>")
 vim.keymap.set('t', "<C-h>", "<C-\\><C-N>")
 

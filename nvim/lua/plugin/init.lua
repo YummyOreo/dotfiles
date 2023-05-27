@@ -31,9 +31,8 @@ return require('packer').startup(function(use)
 
     use { "xiyaowong/nvim-transparent", config = function()
         require("transparent").setup({
-            enable = true, -- boolean: enable transparent
             extra_groups = {},
-            exclude = {
+            exclude_groups = {
                 "FidgetTask",
                 "FidgetTitle",
                 "FloatShadow",
@@ -54,17 +53,12 @@ return require('packer').startup(function(use)
     use {
         'nvim-lualine/lualine.nvim',
         config = function() require("plugin.lualine_config") end,
-        event = { "BufCreate", "BufEnter" },
     }
 
     use 'mhinz/vim-startify'
 
-    use { 'brenoprata10/nvim-highlight-colors', config = function()
-        require("nvim-highlight-colors").setup {
-            render = 'background', -- or 'foreground' or 'first_column'
-            enable_named_colors = true,
-            enable_tailwind = false
-        }
+    use { 'norcalli/nvim-colorizer.lua', config = function()
+        require 'colorizer'.setup()
     end }
 
     -- lang
@@ -80,6 +74,9 @@ return require('packer').startup(function(use)
             require('crates').setup()
         end,
     }
+
+    -- Just
+    use { "IndianBoy42/tree-sitter-just", config = function() require('tree-sitter-just').setup({}) end }
 
     -- Nu
     use {
@@ -146,12 +143,14 @@ return require('packer').startup(function(use)
     use {
         'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
-        cmd = { "HopWord", "HopLine", "HopPattern", "HopWordAC", "HopWordCurrentLine", "HopWordBC", "HopWordMW",
-            "HopLineStart", "HopVertical", "HopChar1", "HopChar2" };
         config = function()
             require("plugin.hop_setup")
         end
     }
+
+    use { "m4xshen/hardtime.nvim", config = function()
+        require("hardtime").setup()
+    end }
 
     -- Lsp/Snips
 
@@ -159,19 +158,18 @@ return require('packer').startup(function(use)
 
     use {
 
-        "hrsh7th/vim-vsnip",
-        requires = 'hrsh7th/cmp-vsnip',
-        opt = true,
+        "L3MON4D3/LuaSnip",
+        requires = 'saadparwaiz1/cmp_luasnip',
     }
 
-    use { "rafamadriz/friendly-snippets", opt = true }
+    use { "rafamadriz/friendly-snippets" }
 
-    use { "onsails/lspkind.nvim", opt = true }
+    use { "onsails/lspkind.nvim" }
 
     use {
         "glepnir/lspsaga.nvim",
-        -- branch = "main",
-        commit = "ccdeda9a100547ed65d10d63b05989af1e8e59e7",
+        branch = "main",
+        -- commit = "ccdeda9a100547ed65d10d63b05989af1e8e59e7",
         config = function()
             require('lspsaga').setup({
                 ui = {
@@ -202,24 +200,21 @@ return require('packer').startup(function(use)
     -- CMP
     use { "hrsh7th/nvim-cmp",
         requires = {
-            { "hrsh7th/cmp-cmdline", opt = true },
-            { "hrsh7th/cmp-path", opt = true },
-            { "hrsh7th/cmp-buffer", opt = true },
-            { "hrsh7th/cmp-nvim-lsp", opt = true },
-            { 'j-hui/fidget.nvim', opt = true }
+            { "hrsh7th/cmp-cmdline" },
+            { "hrsh7th/cmp-path" },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { 'j-hui/fidget.nvim' }
         },
-        event = { "InsertEnter", "CmdlineEnter" },
+        -- event = { "InsertEnter", "CmdlineEnter" },
         config = function()
-            vim.cmd [[
-                        PackerLoad lspkind.nvim cmp-cmdline cmp-path cmp-buffer vim-vsnip cmp-nvim-lsp friendly-snippets fidget.nvim
-                    ]]
             require("plugin.cmp_config")
             require "fidget".setup {
                 window = {
                     relative = "editor", -- where to anchor, either "win" or "editor"
-                    blend = 0, -- &winblend for the window
-                    zindex = nil, -- the zindex value for the window
-                    border = "single", -- style of border for the fidget window
+                    blend = 0,           -- &winblend for the window
+                    zindex = nil,        -- the zindex value for the window
+                    border = "single",   -- style of border for the fidget window
                 },
             }
         end
@@ -232,7 +227,8 @@ return require('packer').startup(function(use)
         config = function() require("plugin.lsp_sig_config") end,
     }
 
-    use { 'neovim/nvim-lspconfig', config = function() require("plugin.lsp_setup") end, requires = {
+    use { 'VonHeikemen/lsp-zero.nvim', config = function() require("plugin.lsp_setup") end, requires = {
+        'neovim/nvim-lspconfig',
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim"
     } }
@@ -245,7 +241,11 @@ return require('packer').startup(function(use)
 
     -- term
 
-    use { 'voldikss/vim-floaterm', cmd = { "FloatermNew", "FloatermKill" } }
+    use { 'voldikss/vim-floaterm', cmd = { "FloatermNew", "FloatermKill" }, config = function()
+        vim.cmd [[
+            hi FloatermBorder guibg=NONE guifg=orange
+        ]]
+    end }
 
     -- web
     use({
@@ -256,7 +256,6 @@ return require('packer').startup(function(use)
             require('browse').setup({
                 -- search provider you want to use
                 provider = "google", -- duckduckgo, bing
-
                 -- either pass it here or just pass the table to the functions
                 -- see below for more
                 bookmarks = {
@@ -266,9 +265,7 @@ return require('packer').startup(function(use)
                         ["crates"] = "https://crates.io/",
                         ["cheatsheet"] = "https://cheats.rs/",
                     },
-
                     ["draw.io"] = "https://app.diagrams.net/",
-
                     ["code"] = {
                         ["regex"] = {
                             ["cheatsheet"] = "https://quickref.me/regex",
@@ -278,7 +275,6 @@ return require('packer').startup(function(use)
                         ["stackoverflow"] = "https://stackoverflow.com/",
                         ["algorithms"] = "https://www.algorithm-archive.org/"
                     },
-
                     ["youtube"] = "https://youtube.com",
                     ["twitch"] = "https://twitch.tv",
                     ["github"] = {
@@ -292,5 +288,4 @@ return require('packer').startup(function(use)
             })
         end
     })
-
 end)
