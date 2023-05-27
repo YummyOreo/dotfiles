@@ -61,6 +61,7 @@ let-env NU_PLUGIN_DIRS = [
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
     # let-env Path = ($env.Path | split row (char esep) | prepend 'C:\Program Files\PostgreSQL\15\bin')
 path-add -p 'C:\Program Files\PostgreSQL\15\bin'
+path-add -p 'C:\Users\OreoD\AppData/Local\bob\nvim-bin'
 
 def-env "path-add" [
     --prepend(-p) # prepend instead of appending.

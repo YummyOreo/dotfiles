@@ -144,6 +144,24 @@ def "list todos" [] {
     }
 }
 
+def "into hex" [] {
+    fmt | get lowerhex
+}
+
+def "just-cmd" [] {
+ # check if justfile exists first
+ if (("./.justfile" | path exists) or ("./justfile" | path exists)) {
+    return (just --list  | lines | str trim | skip 1 | parse "{value}")
+}
+echo "none"
+return []
+}
+
+export extern "just" [
+   cmd?:string@"just-cmd"
+   --list # list all commands
+]
+
 def "cargo info full" [
     crate: string
 ] {
@@ -164,20 +182,4 @@ def "cargo info full" [
     })
 }
 
-def "into hex" [] {
-    fmt | get lowerhex
-}
-
-def "just-cmd" [] {
- # check if justfile exists first
- if (("./.justfile" | path exists) or ("./justfile" | path exists)) {
-    return (just --list  | lines | str trim | skip 1 | parse "{value}")
-}
-echo "none"
-return []
-}
-
-export extern "just" [
-   cmd?:string@"just-cmd"
-   --list # list all commands
-]
+# source "~/AppData/Roaming/nushell/help.nu"

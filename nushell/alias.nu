@@ -10,8 +10,11 @@ alias pwd = coreutils pwd
 alias cat = coreutils cat
 alias head = coreutils head
 alias ls = ls -all
-alias explorer = powershell -c explorer
+# alias explorer = powershell -c explorer
 
 alias ocacity = python 'C:\\Users\\OreoD\\AppData\\Roaming\\alacritty\\change_o.py'
 
 alias zellij = wsl -u root -- /home/z/.cargo/bin/zellij
+
+alias multimc = ^"D:\\MultiMC\\MultiMC.exe"
+alias wakatime = ^"~/.wakatime/wakatime-cli.exe"
