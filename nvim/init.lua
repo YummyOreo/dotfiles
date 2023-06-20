@@ -12,4 +12,6 @@ let &listchars = 'eol:↲,leadmultispace:»   ,tab:» '
 
 autocmd BufWritePre * :Trim
 autocmd TextYankPost * :lua vim.highlight.on_yank({ higroup = 'Question', timeout = 1500, })
+
+nnoremap x "_x
 ]]

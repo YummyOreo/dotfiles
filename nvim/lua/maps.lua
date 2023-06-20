@@ -43,8 +43,6 @@ map("<Leader>h", "<C-W><C-H>")
 
 map("<Leader>bd", "<cmd>bdelete!<CR>")
 
-map('x', '"_x')
-
 nnoremap("<Leader>ZZ", "<cmd>:FloatermKill<CR><cmd>wqa<CR>")
 
 map('<Leader>to', '<cmd>HopChar1MW<CR>', { noremap = true, silent = true })

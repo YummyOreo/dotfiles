@@ -26,7 +26,8 @@ return require('packer').startup(function(use)
             set background=dark
             colorscheme gruvbox8
             ]]
-        end
+        end,
+        branch= "neovim"
     }
 
     use { "xiyaowong/nvim-transparent", config = function()
@@ -204,7 +205,7 @@ return require('packer').startup(function(use)
             { "hrsh7th/cmp-path" },
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-nvim-lsp" },
-            { 'j-hui/fidget.nvim' }
+            { 'j-hui/fidget.nvim', tag= "legacy" }
         },
         -- event = { "InsertEnter", "CmdlineEnter" },
         config = function()
