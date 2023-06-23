@@ -1,0 +1,43 @@
+- Swaybd
+- tmux
+- jq
+- libssl-dev
+- xwayland
+- waybar
+- fonts-font-awesome
+- bluetoothctl
+- network-manager
+- betterdiscordctl
+- pipewire
+	- pipewire-audio
+	- pipewire-jack
+	- pipewire-pulse
+	- pipewire-media-session
+	- qjackctl
+- pavucontrol
+- xdg-desktop-portal
+- wireplumber
+- zsh
+- fzf
+- thunderbird
+- neofetch
+- gh
+- mpv
+- tldr
+# Brew
+- neo-cowsay
+- jesseduffield/lazygit/lazygit
+# cargo
+- alacritty
+- bob-nvim
+- bottom
+- cargo-list
+- exa
+- zoxide
+- atuin
+- coreutils
+- irust
+- ripgrep
+- sccache
+- bat
+- just
