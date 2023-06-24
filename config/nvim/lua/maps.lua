@@ -55,7 +55,7 @@ nnoremap("<Leader>gg", "<cmd>Glow<CR>")
 
 vim.cmd([[
     let g:floaterm_keymap_toggle = '<Leader>T'
-    let g:floaterm_shell = 'nu'
+    let g:floaterm_shell = 'zsh'
 ]])
 
 nnoremap("<Leader>T", "<cmd>FloatermNew<cr>")

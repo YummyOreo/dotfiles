@@ -53,12 +53,4 @@ function! Trim()
 endfun
 
 command! -nargs=0 Trim call Trim()
-
-function! Ocacity(value)
-     execute "silent !powershell ocacity ". a:value
-endfun
-
-command! -nargs=1 Ocacity call Ocacity(<f-args>)
-
-
 ]])

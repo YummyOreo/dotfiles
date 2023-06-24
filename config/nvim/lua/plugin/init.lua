@@ -79,17 +79,6 @@ return require('packer').startup(function(use)
     -- Just
     use { "IndianBoy42/tree-sitter-just", config = function() require('tree-sitter-just').setup({}) end }
 
-    -- Nu
-    use {
-        'LhKipp/nvim-nu',
-        -- run =  ":TSInstall nu",
-        config = function()
-            require 'nu'.setup {
-                use_lsp_features = false,
-            }
-        end
-    }
-
     -- utils
 
     use {
