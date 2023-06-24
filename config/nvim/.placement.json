@@ -1,0 +1,5 @@
+{
+    "dir": "~/.config/nvim/",
+    "type": "nvim",
+    "comment": "symlink the main file and the lua folder"
+}

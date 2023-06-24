@@ -1,0 +1,5 @@
+background-color=#3c3836
+text-color=#ebdbb2
+border-color=#d65d0e
+progress-color=over #fe8019
+default-timeout=1000
