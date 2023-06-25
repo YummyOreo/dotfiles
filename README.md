@@ -2,5 +2,6 @@
 Warning!!: This are still VERY MUCH A WIP
 And probably wont work for you
 
-## Foldel link fix:
-`xdg-mime default thunar.desktop inode/directory`
+# KNOWN PROBLEMS
+- installed.md is not up to date
+- zshrc does not work

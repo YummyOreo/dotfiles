@@ -9,7 +9,7 @@ alias vim="nvim"
 alias ll="exa -la"
 alias ls="exa -a"
 
-bindkey -s ^f "$HOME/scripts/tmux-sessionizer.sh\n"
+bindkey -s ^f "$HOME/scripts/tmux-sessionizer\n"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
