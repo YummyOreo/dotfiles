@@ -18,11 +18,19 @@ for DIR in ./config/*; do
     elif [ $type = "files" ]
     then
         echo "Linking files in" $DIR "to" $dir
-        for LINK_FILE in $DIR/*; do
-            PLACMENT_FILE=$(echo "${LINK_FILE/$DIR/$dir}")
-            echo "Linking file" $LINK_FILE "to" $PLACMENT_FILE
-            echo "Running: ln -srf" $LINK_FILE $PLACMENT_FILE >> $LINK_LOG_FILE
-            ln -srf $LINK_FILE $PLACMENT_FILE
+        for LINK_FILE in "$DIR"/* $DIR/.[^.]*; do
+            if [ $LINK_FILE = $DIR"/.placement.json" ]
+            then
+                echo "Skipping" $LINK_FILE
+            elif [ $LINK_FILE = $DIR"/*" ]
+            then
+                continue
+            else
+                PLACMENT_FILE=$(echo "${LINK_FILE/$DIR/$dir}")
+                echo "Linking file" $LINK_FILE "to" $PLACMENT_FILE
+                echo "Running: ln -srf" $LINK_FILE $PLACMENT_FILE >> $LINK_LOG_FILE
+                ln -srf $LINK_FILE $PLACMENT_FILE
+            fi
         done
     else
         echo "Cant find type" $type >> $LINK_LOG_FILE
