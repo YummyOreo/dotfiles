@@ -1,1 +1,4 @@
 history.txt
+*.log
+config/nvim/plugin/*
+config/nvim/plugin/

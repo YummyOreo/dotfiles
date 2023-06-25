@@ -1,4 +1,4 @@
 {
-    "dir": "~/.config/atuin",
-    "type": "files"
+    "dir": "~/.config/",
+    "type": "folder"
 }

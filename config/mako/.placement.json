@@ -1,4 +1,4 @@
 {
-    "dir": "~/.config/mako",
-    "type": "files"
+    "dir": "~/.config/",
+    "type": "folder"
 }

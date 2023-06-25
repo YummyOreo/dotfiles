@@ -1,4 +1,4 @@
 {
-    "dir": "~/.config/alacritty/",
-    "type": "files"
+    "dir": "~/.config/",
+    "type": "folder"
 }
