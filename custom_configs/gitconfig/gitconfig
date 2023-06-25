@@ -1,0 +1,11 @@
+[commit]
+	gpgsign = true
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[user]
+	email = <EMAIL>
+	name = <NAME>
+	signingkey = <KEY>
+[credential]
+	helper = /usr/local/bin/git-credential-manager
+	credentialStore = gpg
