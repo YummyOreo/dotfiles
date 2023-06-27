@@ -1,6 +1,5 @@
-# Dotfiles for my linux laptop:
-Warning!!: This are still VERY MUCH A WIP
-And probably wont work for you
+# WARNING:
+Running `./linkscripts.bash` or `./linkdotfiles.bash` will delete the corresponding folders in your home dir.
 
 # KNOWN PROBLEMS
 - installed.md is not up to date
@@ -8,4 +7,4 @@ And probably wont work for you
 
 # Commands
 ## Get a list of current windows / class names:
-- `swaymsg -t get_tree`
+- `swaymsg -t aet_tree`
