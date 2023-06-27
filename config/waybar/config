@@ -128,10 +128,10 @@
             "3": "*", // Icon: terminal
             "4": "", // Icon: mail
             "5": "💬", // Icon: Stuff
-            "6": "", // Icon: terminal
-            "7": "", // Icon: terminal
-            "8": "", // Icon: terminal
-            "9": "", // Icon: terminal
+            "6": "*", // Icon: terminal
+            "7": "*", // Icon: terminal
+            "8": "*", // Icon: terminal
+            "9": "*", // Icon: terminal
             "urgent": "",
             "focused": "",
             "default": ""

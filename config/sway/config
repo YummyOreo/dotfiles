@@ -145,6 +145,7 @@ input * accel_profile flat
 assign [class="Brave-browser"] workspace number 1
 assign [class="thunderbird*"] workspace number 4
 assign [class="discord"] workspace number 5
+assign [class="obsidian"] workspace number 9
 #
 # Layout stuff:
 #
