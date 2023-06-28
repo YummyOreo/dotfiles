@@ -43,3 +43,7 @@ run `swaymsg -t aet_tree`
 # Keybindings
 ## zsh
 - `ctl+f` open `./scripts/tmux-sessionizer` (fzf over projects and then open a tmux session in the dir)
+
+## Connect to network
+- `nmcli d wifi list` to list all networks
+- `nmcli d wifi connect <ssid> password "<password>"` to connect to wifi
