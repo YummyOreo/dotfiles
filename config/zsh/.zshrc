@@ -2,6 +2,7 @@
 source "$HOME/.cargo/env"
 export PATH="$HOME/.local/share/bob/nvim-bin:/usr/libexec/imv:$PATH"
 export EDITOR="$HOME/.local/share/bob/nvim-bin/nvim"
+export GRAVEYARD="$HOME/.local/share/Trash/graveyard"
 
 eval "$(starship init zsh)"
 
