@@ -193,3 +193,10 @@
     border-color: #c9545d;
     color: #c9545d;
 }
+
+button:hover {
+  box-shadow: none; /* Remove predefined box-shadow */
+  text-shadow: none; /* Remove predefined text-shadow */
+  background: #504945; /* Remove predefined background color (white) */
+  transition: none; /* Disable predefined animations */
+}

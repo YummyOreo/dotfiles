@@ -5,6 +5,7 @@ swaylock \
 	--clock \
 	--indicator \
         - L \
+        -f \
         --bs-hl-color a89984 \
         --inside-clear-color bdae93 \
         --ring-clear-color a89984 \
